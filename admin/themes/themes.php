@@ -39,13 +39,35 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             $_SESSION['flash_message'] = 'Theme duplicated.';
         }
     }
-    header('Location: /admin/themes.php');
+    header('Location: /admin/themes/themes.php');
     exit;
 }
 
 // Fetch all themes
 $themes = db_query('SELECT id, name, created_at, active FROM themes ORDER BY created_at DESC')->fetchAll();
 $activeThemeId = 0;
+// If no themes exist, insert the default theme from files
+if (empty($themes)) {
+    $defaultConfig = __DIR__ . '/../../themes/default/theme.json';
+    $defaultName = 'Default Theme';
+    $settingsData = '';
+    if (is_file($defaultConfig)) {
+        $conf = json_decode(file_get_contents($defaultConfig), true);
+        if (isset($conf['name'])) {
+            $defaultName = trim($conf['name']);
+        }
+        if (isset($conf['settings'])) {
+            $settingsData = json_encode($conf['settings']);
+        }
+    }
+    db_query('INSERT INTO themes (name, layout_json, settings_json, active) VALUES (:name, :layout, :settings, 1)', [
+        ':name' => $defaultName,
+        ':layout' => '',
+        ':settings' => $settingsData,
+    ]);
+    $newId = (int) db_last_insert_id();
+    $themes[] = ['id' => $newId, 'name' => $defaultName, 'created_at' => date('Y-m-d H:i:s'), 'active' => 1];
+}
 foreach ($themes as $t) {
     if ($t['active']) { $activeThemeId = (int)$t['id']; break; }
 }
