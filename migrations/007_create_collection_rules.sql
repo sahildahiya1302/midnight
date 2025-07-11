@@ -1,0 +1,8 @@
+CREATE TABLE IF NOT EXISTS collection_rules (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    collection_id INT NOT NULL,
+    field VARCHAR(50) NOT NULL,
+    operator VARCHAR(20) NOT NULL,
+    value VARCHAR(255) NOT NULL,
+    FOREIGN KEY (collection_id) REFERENCES collections(id) ON DELETE CASCADE ON UPDATE CASCADE
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;

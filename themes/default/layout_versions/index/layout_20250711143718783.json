@@ -1,0 +1,127 @@
+{
+    "sections": {
+        "testimonial-slider-mcyx7scf-8bueg3bpst3": {
+            "type": "testimonial-slider",
+            "settings": {
+                "title": "Loved by Thousands"
+            },
+            "blocks": []
+        },
+        "featured-collection-mcyx7scf-0gky5vlu4p8r": {
+            "type": "featured-collection",
+            "settings": {
+                "collection_id": "1",
+                "title": "Handpicked Favorites",
+                "heading": "hi this for test ",
+                "max_products": "15"
+            },
+            "blocks": []
+        },
+        "newsletter-mcyx7scf-vx0ibf90d69": {
+            "type": "newsletter",
+            "settings": {
+                "heading": "Stay in Touch",
+                "placeholder": "Enter your email"
+            },
+            "blocks": []
+        },
+        "recently-viewed-mcyx7scf-t3958kh2dno": {
+            "type": "recently-viewed",
+            "settings": [],
+            "blocks": []
+        },
+        "video-banner-mcyx7scf-vwkrgvkpj4e": {
+            "type": "video-banner",
+            "settings": {
+                "heading_text": "oihoir",
+                "subheading_text": "rege",
+                "badge_text": "rege",
+                "show_badge": true,
+                "secondary_text": "g",
+                "background_type": "undefined"
+            },
+            "blocks": []
+        },
+        "promo-grid-mcyx7scf-paqdrojw1lc": {
+            "type": "promo-grid",
+            "settings": {
+                "heading": "Featured Promotions",
+                "subheading": "",
+                "promos": [
+                    {
+                        "image": "/assets/promo1.jpg",
+                        "title": "Summer Essentials",
+                        "subtext": "Up to 40% off",
+                        "link": "/collections/summer"
+                    },
+                    {
+                        "image": "/assets/promo2.jpg",
+                        "title": "Sterling Rings",
+                        "subtext": "Shop handcrafted designs",
+                        "link": "/collections/rings"
+                    }
+                ]
+            },
+            "blocks": []
+        },
+        "popup-mcyx7scf-2wfewefbmyt": {
+            "type": "popup",
+            "settings": {
+                "heading": "Get 10% Off!",
+                "subheading": "Subscribe and receive a 10% coupon.",
+                "delay_seconds": 3,
+                "background_color": "#ffffff",
+                "text_color": "#000000"
+            },
+            "blocks": []
+        },
+        "hero-banner-mcyx7scf-i5p9rj3s5ra": {
+            "type": "hero-banner",
+            "settings": {
+                "background_image": "",
+                "heading": "Your Hero Heading",
+                "subheading": "Your supporting text or tagline goes here.",
+                "button_text": "Shop Now",
+                "button_link": "#",
+                "text_color": "#ffffff",
+                "text_align": "center",
+                "overlay_color": "rgba(0, 0, 0, 0.4)",
+                "height": "600px"
+            },
+            "blocks": []
+        },
+        "featured-product-mcyx7scf-hmo2am2ae4u": {
+            "type": "featured-product",
+            "settings": {
+                "product": "1",
+                "show_price": true,
+                "show_add_to_cart": true
+            },
+            "blocks": []
+        },
+        "brand-logos-mcyx7ehr-lfx5kf12acr": {
+            "type": "brand-logos",
+            "settings": {
+                "heading": "Trusted by Top Brands",
+                "layout_style": "slider",
+                "max_logos": 10,
+                "autoplay": true,
+                "text_align": "center",
+                "logos": []
+            },
+            "blocks": []
+        }
+    },
+    "order": [
+        "testimonial-slider-mcyx7scf-8bueg3bpst3",
+        "featured-collection-mcyx7scf-0gky5vlu4p8r",
+        "newsletter-mcyx7scf-vx0ibf90d69",
+        "recently-viewed-mcyx7scf-t3958kh2dno",
+        "video-banner-mcyx7scf-vwkrgvkpj4e",
+        "promo-grid-mcyx7scf-paqdrojw1lc",
+        "popup-mcyx7scf-2wfewefbmyt",
+        "hero-banner-mcyx7scf-i5p9rj3s5ra",
+        "featured-product-mcyx7scf-hmo2am2ae4u",
+        "brand-logos-mcyx7ehr-lfx5kf12acr"
+    ]
+}

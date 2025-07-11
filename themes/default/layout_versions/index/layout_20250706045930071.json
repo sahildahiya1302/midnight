@@ -1,0 +1,129 @@
+{
+    "sections": {
+        "testimonial-slider-mcr79lkm-8lwkzg7vowb": {
+            "type": "testimonial-slider",
+            "settings": {
+                "title": "Loved by Thousands"
+            },
+            "blocks": []
+        },
+        "featured-collection-mcr79lkm-hom7rokaen": {
+            "type": "featured-collection",
+            "settings": {
+                "collection_id": "1",
+                "title": "Handpicked Favorites",
+                "heading": "hi this for test ",
+                "max_products": "15"
+            },
+            "blocks": []
+        },
+        "newsletter-mcr79lkm-ng3yn0vhbaf": {
+            "type": "newsletter",
+            "settings": {
+                "heading": "Stay in Touch",
+                "placeholder": "Enter your email"
+            },
+            "blocks": []
+        },
+        "recently-viewed-mcr79lkm-4ybzguv2s8": {
+            "type": "recently-viewed",
+            "settings": [],
+            "blocks": []
+        },
+        "video-banner-mcr79lkm-hm6olnjxqvu": {
+            "type": "video-banner",
+            "settings": {
+                "heading_text": "oihoir",
+                "subheading_text": "rege",
+                "badge_text": "rege",
+                "show_badge": true,
+                "secondary_text": "g",
+                "background_type": "undefined"
+            },
+            "blocks": []
+        },
+        "promo-grid-mcr79lkm-fnuqu8f8t3": {
+            "type": "promo-grid",
+            "settings": {
+                "heading": "Featured Promotions",
+                "subheading": "",
+                "promos": [
+                    {
+                        "image": "/assets/promo1.jpg",
+                        "title": "Summer Essentials",
+                        "subtext": "Up to 40% off",
+                        "link": "/collections/summer"
+                    },
+                    {
+                        "image": "/assets/promo2.jpg",
+                        "title": "Sterling Rings",
+                        "subtext": "Shop handcrafted designs",
+                        "link": "/collections/rings"
+                    }
+                ]
+            },
+            "blocks": []
+        },
+        "popup-mcr79lkm-k5w06bet9a": {
+            "type": "popup",
+            "settings": {
+                "heading": "Get 10% Off!",
+                "subheading": "Subscribe and receive a 10% coupon.",
+                "delay_seconds": 3,
+                "background_color": "#ffffff",
+                "text_color": "#000000"
+            },
+            "blocks": []
+        },
+        "hero-banner-mcr79lkm-ke68umb9yim": {
+            "type": "hero-banner",
+            "settings": {
+                "background_image": "",
+                "heading": "Your Hero Heading",
+                "subheading": "Your supporting text or tagline goes here.",
+                "button_text": "Shop Now",
+                "button_link": "#",
+                "text_color": "#ffffff",
+                "text_align": "center",
+                "overlay_color": "rgba(0, 0, 0, 0.4)",
+                "height": "600px"
+            },
+            "blocks": []
+        },
+        "featured-product-mcr79lkm-902tl6gur3o": {
+            "type": "featured-product",
+            "settings": {
+                "product": "1",
+                "show_price": true,
+                "show_add_to_cart": true
+            },
+            "blocks": []
+        },
+        "announcement-bar-mcr793gd-aargjbdn4p6": {
+            "type": "announcement-bar",
+            "settings": {
+                "announcements": [
+                    "Welcome to our store!"
+                ],
+                "animation_type": "horizontal",
+                "animation_speed": 10,
+                "animation_direction": "left",
+                "background_color": "#000000",
+                "text_color": "#ffffff"
+            },
+            "blocks": []
+        }
+    },
+    "order": [
+        "testimonial-slider-mcr79lkm-8lwkzg7vowb",
+        "featured-collection-mcr79lkm-hom7rokaen",
+        "newsletter-mcr79lkm-ng3yn0vhbaf",
+        "recently-viewed-mcr79lkm-4ybzguv2s8",
+        "video-banner-mcr79lkm-hm6olnjxqvu",
+        "promo-grid-mcr79lkm-fnuqu8f8t3",
+        "popup-mcr79lkm-k5w06bet9a",
+        "hero-banner-mcr79lkm-ke68umb9yim",
+        "featured-product-mcr79lkm-902tl6gur3o",
+        "announcement-bar-mcr793gd-aargjbdn4p6"
+    ]
+}
