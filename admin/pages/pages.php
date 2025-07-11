@@ -80,7 +80,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 // Fetch all pages
 $pages = db_query('SELECT id, title, slug, created_at, version, is_published FROM pages ORDER BY created_at DESC')->fetchAll();
 
-require __DIR__ . '/components/header.php';
+require __DIR__ . '/../components/header.php';
 ?>
 
 <h1>Pages</h1>
@@ -164,5 +164,5 @@ if (isset($_GET['action']) && $_GET['action'] === 'edit' && isset($_GET['id'])) 
 <?php endif; ?>
 
 <?php
-require __DIR__ . '/components/footer.php';
+require __DIR__ . '/../components/footer.php';
 ?>

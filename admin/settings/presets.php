@@ -15,13 +15,12 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $action = $_POST['action'] ?? '';
     if ($action === 'delete') {
         $id = intval($_POST['id']);
-        $stmt = $pdo->prepare('DELETE FROM section_presets WHERE id = ?');
-        $stmt->execute([$id]);
+        db_query('DELETE FROM section_presets WHERE id = :id', [':id' => $id]);
     }
 }
 
-$presets = $pdo->query('SELECT * FROM section_presets ORDER BY created_at DESC')->fetchAll(PDO::FETCH_ASSOC);
-include __DIR__ . '/components/header.php';
+$presets = db_query('SELECT * FROM section_presets ORDER BY created_at DESC')->fetchAll();
+include __DIR__ . '/../components/header.php';
 ?>
 <h1>Section Presets</h1>
 <table class="table">
@@ -41,4 +40,4 @@ include __DIR__ . '/components/header.php';
     </tr>
     <?php endforeach; ?>
 </table>
-<?php include __DIR__ . '/components/footer.php'; ?>
+<?php include __DIR__ . '/../components/footer.php'; ?>

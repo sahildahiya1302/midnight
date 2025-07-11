@@ -42,7 +42,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 }
 
 $sections = db_query('SELECT * FROM global_sections ORDER BY created_at DESC')->fetchAll(PDO::FETCH_ASSOC);
-include __DIR__ . '/components/header.php';
+include __DIR__ . '/../components/header.php';
 ?>
 <h1>Global Sections</h1>
 <form method="post" class="mb-3">
@@ -72,4 +72,4 @@ include __DIR__ . '/components/header.php';
 </tr>
 <?php endforeach; ?>
 </table>
-<?php include __DIR__ . '/components/footer.php'; ?>
+<?php include __DIR__ . '/../components/footer.php'; ?>

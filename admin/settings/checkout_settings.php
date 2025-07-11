@@ -23,7 +23,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 }
 
 $pageTitle = 'Checkout Success Settings';
-include __DIR__ . '/components/header.php';
+include __DIR__ . '/../components/header.php';
 ?>
 <h1>Checkout Success Settings</h1>
 <?php if (!empty($_SESSION['flash_message'])): ?>
@@ -33,4 +33,4 @@ include __DIR__ . '/components/header.php';
     <textarea name="json" rows="20" style="width:100%;"><?= htmlspecialchars(json_encode($data, JSON_PRETTY_PRINT)) ?></textarea><br>
     <button class="btn btn-primary">Save</button>
 </form>
-<?php include __DIR__ . '/components/footer.php'; ?>
+<?php include __DIR__ . '/../components/footer.php'; ?>
