@@ -1,0 +1,4 @@
+[2025-07-06 04:38:16] [WARNING] Access denied for non-admin user {"user_id":1,"email":"sahildahiya1302@gmail.com"}
+[2025-07-06 04:38:44] [INFO] Admin logged in without 2FA (OTP bypass) {"user_id":1}
+[2025-07-06 13:47:00] [WARNING] Invalid login attempt {"email":"sahildahiya1302@gmail.com"}
+[2025-07-06 13:47:04] [INFO] Admin logged in without 2FA (OTP bypass) {"user_id":1}

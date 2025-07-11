@@ -1,0 +1,30 @@
+{
+  "name": "Footer",
+  "settings": [
+    { "type": "image", "id": "logo", "label": "Footer Logo" },
+    { "type": "textarea", "id": "copyright", "label": "Copyright", "default": "© 2025 Your Store" },
+    {
+      "type": "list",
+      "id": "menus",
+      "label": "Footer Menus",
+      "item": {
+        "type": "object",
+        "properties": [
+          { "type": "text", "id": "title", "label": "Menu Title" },
+          {
+            "type": "list",
+            "id": "links",
+            "label": "Menu Links",
+            "item": {
+              "type": "object",
+              "properties": [
+                { "type": "text", "id": "label", "label": "Link Label" },
+                { "type": "url", "id": "url", "label": "Link URL" }
+              ]
+            }
+          }
+        ]
+      }
+    }
+  ]
+}

@@ -1,0 +1,34 @@
+[
+  {
+    "name": "title",
+    "type": "text",
+    "label": "Store Title"
+  },
+  {
+    "name": "description",
+    "type": "textarea",
+    "label": "Store Description"
+  },
+  {
+    "name": "color_primary",
+    "type": "color",
+    "label": "Primary Color"
+  },
+  {
+    "name": "color_scheme",
+    "type": "select",
+    "label": "Color Scheme",
+    "options": ["default", "dark"],
+    "default": "default"
+  },
+  {
+    "name": "menus",
+    "type": "textarea",
+    "label": "Navigation Menus (JSON)"
+  },
+  {
+    "name": "custom_css",
+    "type": "textarea",
+    "label": "Custom CSS"
+  }
+]

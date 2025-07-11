@@ -1,0 +1,39 @@
+{
+  "sections": {
+    "hero_banner": {
+      "type": "hero-banner",
+      "settings": {
+        "heading": "About Us",
+        "subheading": "Learn more about our story",
+        "background_image": "uploads/banners/about-us.jpg"
+      }
+    },
+    "rich_text": {
+      "type": "rich-text",
+      "settings": {
+        "content": "<p>Our company was founded with the mission to provide quality products and excellent customer service.</p>"
+      }
+    },
+    "image_with_text": {
+      "type": "image-with-text",
+      "settings": {
+        "image": "uploads/images/team.jpg",
+        "heading": "Meet the Team",
+        "text": "Our dedicated team works hard to bring you the best."
+      }
+    },
+    "newsletter": {
+      "type": "newsletter",
+      "settings": {
+        "heading": "Stay Updated",
+        "placeholder": "Enter your email"
+      }
+    }
+  },
+  "order": [
+    "hero_banner",
+    "rich_text",
+    "image_with_text",
+    "newsletter"
+  ]
+}
