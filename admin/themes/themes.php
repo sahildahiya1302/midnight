@@ -45,6 +45,13 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
 // Fetch all themes
 $themes = db_query('SELECT id, name, created_at, active FROM themes ORDER BY created_at DESC')->fetchAll();
+$activeThemeId = 0;
+foreach ($themes as $t) {
+    if ($t['active']) { $activeThemeId = (int)$t['id']; break; }
+}
+if (!$activeThemeId && !empty($themes)) {
+    $activeThemeId = (int)$themes[0]['id'];
+}
 
 foreach ($themes as &$theme) {
     if (!isset($theme['active'])) {
@@ -57,6 +64,8 @@ require __DIR__ . '/../components/header.php';
 ?>
 
 <h1>Themes</h1>
+
+<iframe src="/?preview_theme_id=<?= $activeThemeId ?>" style="width:100%;height:400px;border:1px solid #ccc;margin-bottom:20px;"></iframe>
 
 <?php if (!empty($_SESSION['flash_message'])): ?>
     <div class="flash-message"><?= htmlspecialchars($_SESSION['flash_message']) ?></div>
@@ -78,7 +87,7 @@ require __DIR__ . '/../components/header.php';
             <td><?= htmlspecialchars($theme['name']) ?><?= $theme['active'] ? ' (active)' : '' ?></td>
             <td><?= htmlspecialchars($theme['created_at']) ?></td>
             <td>
-                <a href="/admin/themes/theme-editor.php?theme_id=<?= $theme['id'] ?>">Edit</a>
+                <a href="/admin/themes/theme-editor.php?theme_id=<?= $theme['id'] ?>" target="_blank">Edit</a>
                 <form method="post" style="display:inline; margin-left:5px;">
                     <input type="hidden" name="action" value="activate">
                     <input type="hidden" name="theme_id" value="<?= $theme['id'] ?>">

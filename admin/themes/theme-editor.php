@@ -40,6 +40,9 @@ foreach (glob($sectionsDir . "/*.schema.json") as $schemaFile) {
         $sectionSchemas[basename($schemaFile, '.schema.json')] = $schema;
     }
 }
+
+$settingsSchemaPath = THEME_PATH . '/settings-schema.json';
+$settingsSchema = is_file($settingsSchemaPath) ? json_decode(file_get_contents($settingsSchemaPath), true) : [];
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -57,6 +60,7 @@ foreach (glob($sectionsDir . "/*.schema.json") as $schemaFile) {
         <option value="">-- Select Page --</option>
       </select>
       <button id="save-layout-btn">Save Changes</button>
+      <button id="toggle-settings">Theme Settings</button>
       <div class="device-toggle">
         <button type="button" data-width="100%" class="active" id="device-desktop">Desktop</button>
         <button type="button" data-width="768px" id="device-tablet">Tablet</button>
@@ -80,6 +84,41 @@ foreach (glob($sectionsDir . "/*.schema.json") as $schemaFile) {
       </div>
     </div>
   </div>
+  <div id="settings-modal" class="modal">
+    <div class="modal-content settings-wrapper">
+      <button type="button" class="close-modal" aria-label="Close">&times;</button>
+      <aside class="settings-menu">
+        <ul>
+          <?php foreach ($settingsSchema as $grp => $fields): ?>
+            <li><a href="#<?= htmlspecialchars($grp) ?>"><?= htmlspecialchars($grp) ?></a></li>
+          <?php endforeach; ?>
+        </ul>
+      </aside>
+      <div class="settings-content">
+        <?php foreach ($settingsSchema as $grp => $fields): ?>
+          <section id="<?= htmlspecialchars($grp) ?>" class="settings-group">
+            <h2><?= htmlspecialchars($grp) ?></h2>
+            <?php foreach ($fields as $key => $field): $val = getSetting($key, $field['default'] ?? ''); ?>
+              <div class="setting-row">
+                <label><?= htmlspecialchars($field['label']) ?></label>
+                <?php switch($field['type']){
+                  case 'color': ?>
+                    <input type="color" class="setting-input" data-key="<?= $key ?>" value="<?= htmlspecialchars($val) ?>">
+                  <?php break; case 'range': ?>
+                    <input type="range" min="<?= $field['min'] ?>" max="<?= $field['max'] ?>" class="setting-input" data-key="<?= $key ?>" value="<?= htmlspecialchars($val) ?>">
+                  <?php break; case 'checkbox': ?>
+                    <input type="checkbox" class="setting-input" data-key="<?= $key ?>" <?= $val ? 'checked' : '' ?>>
+                  <?php break; default: ?>
+                    <input type="text" class="setting-input" data-key="<?= $key ?>" value="<?= htmlspecialchars($val) ?>">
+                <?php } ?>
+              </div>
+            <?php endforeach; ?>
+          </section>
+        <?php endforeach; ?>
+      </div>
+    </div>
+  </div>
+
   <div class="container">
     <div class="sidebar">
       <h2>Page Sections (<span id="page-type-label"><?php echo htmlspecialchars($pageType); ?></span>)</h2>
@@ -115,6 +154,9 @@ foreach (glob($sectionsDir . "/*.schema.json") as $schemaFile) {
   const searchInput = document.getElementById('section-filter');
   const previewFrame = document.getElementById('preview-frame');
   const deviceButtons = document.querySelectorAll('.device-toggle button');
+  const settingsModal = document.getElementById('settings-modal');
+  const toggleSettings = document.getElementById('toggle-settings');
+  const closeSettingsBtn = document.querySelector('#settings-modal .close-modal');
 
   let addTargetGroup = 'template';
 
@@ -992,6 +1034,14 @@ let fileSlug = page;
     modal.style.display = 'none';
   });
 
+  toggleSettings.addEventListener('click', () => {
+    settingsModal.style.display = 'flex';
+  });
+
+  closeSettingsBtn.addEventListener('click', () => {
+    settingsModal.style.display = 'none';
+  });
+
   function filterCards(q) {
     document.querySelectorAll('#section-card-list .section-card').forEach(card => {
       card.style.display = card.querySelector('h4').textContent.toLowerCase().includes(q.toLowerCase()) ? 'flex' : 'none';
@@ -1083,7 +1133,7 @@ async function saveLayout() {
     const result = await response.json();
     if (!result.success) throw new Error(result.error || 'Failed to save layout');
 
-    layoutDirty = false;
+layoutDirty = false;
     console.log('Layout saved successfully!');
   } catch (err) {
     console.error('Error saving layout:', err);
@@ -1093,5 +1143,7 @@ async function saveLayout() {
 
 
 </script>
+<script>const CURRENT_THEME_ID = <?= (int)$themeId ?>;</script>
+<script src="/admin/assets/theme-settings.js"></script>
 </body>
 </html>

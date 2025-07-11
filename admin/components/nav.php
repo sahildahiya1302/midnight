@@ -52,13 +52,7 @@
         <li><a href="/admin/settings/global_sections.php">Global Sections</a></li>
       </ul>
     </li>
-    <li class="nav-item">Themes
-      <ul class="sub-nav">
-        <li><a href="/admin/themes/themes.php">Themes</a></li>
-        <li><a href="/admin/themes/themes.php">Theme Editor</a></li>
-        <li><a href="/admin/editor/theme-settings.php">Theme Settings</a></li>
-      </ul>
-    </li>
+    <li class="nav-item"><a href="/admin/themes/themes.php">Themes</a></li>
     <li class="nav-item">Plugins
       <ul class="sub-nav">
         <li><a href="/admin/plugins/plugins.php">Plugins</a></li>
