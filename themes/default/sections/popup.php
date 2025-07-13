@@ -2,9 +2,19 @@
 $id = $id ?? 'popup-' . uniqid();
 $heading = $settings['heading'] ?? 'Get 10% Off!';
 $subheading = $settings['subheading'] ?? 'Subscribe and receive a 10% coupon.';
+$image = '';
+$cta = '#';
 $delay = intval($settings['delay_seconds'] ?? 3);
 $background = $settings['background_color'] ?? '#fff';
 $textColor = $settings['text_color'] ?? '#000';
+
+if (!empty($blocks)) {
+    $block = $blocks[0];
+    $heading = $block['settings']['heading'] ?? $heading;
+    $image = $block['settings']['image'] ?? '';
+    $subheading = $block['settings']['text'] ?? $subheading;
+    $cta = $block['settings']['cta'] ?? $cta;
+}
 ?>
 
 <style>
@@ -34,8 +44,14 @@ $textColor = $settings['text_color'] ?? '#000';
 
 <div id="<?= $id ?>">
   <div class="close-btn" onclick="document.getElementById('<?= $id ?>').style.display='none'">×</div>
+  <?php if ($image): ?>
+    <img src="<?= escape_html($image) ?>" alt="Popup" style="max-width:100%;margin-bottom:10px;">
+  <?php endif; ?>
   <h3><?= escape_html($heading) ?></h3>
   <p><?= escape_html($subheading) ?></p>
+  <?php if ($cta): ?>
+    <a href="<?= escape_html($cta) ?>">Learn more</a>
+  <?php endif; ?>
 </div>
 
 <script>

@@ -7,6 +7,13 @@ $buttonText = $settings['button_text'] ?? 'Shop Now';
 $buttonLink = $settings['button_link'] ?? '#';
 $videoType = $settings['video_type'] ?? 'mp4';
 $videoUrl = $settings['video_url'] ?? '';
+$blocks = $blocks ?? [];
+if (!empty($blocks)) {
+    $b = $blocks[0];
+    $videoUrl = $b['settings']['video_url'] ?? $videoUrl;
+    $heading = $b['settings']['heading'] ?? $heading;
+    $buttonLink = $b['settings']['cta'] ?? $buttonLink;
+}
 $overlay = $settings['overlay'] ?? true;
 
 if (!function_exists('escape_html')) {

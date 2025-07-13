@@ -2,7 +2,17 @@
 $id = $id ?? 'promo-grid-' . uniqid();
 $heading = $settings['heading'] ?? 'Featured Promotions';
 $subheading = $settings['subheading'] ?? '';
-$promos = $settings['promos'] ?? [];
+$promos = [];
+if (!empty($blocks)) {
+    foreach ($blocks as $block) {
+        if (($block['type'] ?? '') === 'promo') {
+            $promos[] = $block['settings'];
+        }
+    }
+}
+if (empty($promos)) {
+    $promos = $settings['promos'] ?? [];
+}
 
 if (!function_exists('escape_html')) {
   function escape_html($str) {

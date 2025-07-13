@@ -1,7 +1,17 @@
 <?php
 $id = $id ?? 'image-gallery-' . uniqid();
 $heading = $settings['heading'] ?? 'Gallery';
-$images = $settings['images'] ?? [];
+$images = [];
+if (!empty($blocks)) {
+    foreach ($blocks as $block) {
+        if (($block['type'] ?? '') === 'image') {
+            $images[] = $block['settings'];
+        }
+    }
+}
+if (empty($images)) {
+    $images = $settings['images'] ?? [];
+}
 ?>
 
 <style>

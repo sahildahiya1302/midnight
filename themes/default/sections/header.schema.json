@@ -210,5 +210,28 @@
       "label": "Custom HTML Below",
       "default": ""
     }
-  ]
+  ],
+  "blocks": [
+    {
+      "type": "logo",
+      "name": "Logo",
+      "settings": [
+        { "type": "image_picker", "id": "logo_image", "label": "Logo Image" }
+      ]
+    },
+    {
+      "type": "menu_item",
+      "name": "Menu Item",
+      "settings": [
+        { "type": "text", "id": "label", "label": "Label" },
+        { "type": "url", "id": "url", "label": "URL" }
+      ]
+    },
+    {
+      "type": "search_toggle",
+      "name": "Search Toggle",
+      "settings": []
+    }
+  ],
+  "max_blocks": 10
 }

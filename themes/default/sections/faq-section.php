@@ -2,10 +2,19 @@
 $id = $id ?? 'faq-section-' . uniqid();
 $heading = $settings['heading'] ?? 'Frequently Asked Questions';
 
-// Ensure $faqs is an array
-$rawFaqs = $settings['faqs'] ?? [];
-$faqs = is_array($rawFaqs) ? $rawFaqs : json_decode($rawFaqs, true);
-if (!is_array($faqs)) $faqs = [];
+$faqs = [];
+if (!empty($blocks)) {
+    foreach ($blocks as $block) {
+        if (($block['type'] ?? '') === 'faq') {
+            $faqs[] = $block['settings'] ?? [];
+        }
+    }
+}
+if (empty($faqs)) {
+    $rawFaqs = $settings['faqs'] ?? [];
+    $faqs = is_array($rawFaqs) ? $rawFaqs : json_decode($rawFaqs, true);
+    if (!is_array($faqs)) $faqs = [];
+}
 
 if (!function_exists('escape_html')) {
   function escape_html($str) {

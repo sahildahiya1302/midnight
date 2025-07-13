@@ -43,12 +43,14 @@
       "type": "tile",
       "name": "Announcement",
       "settings": [
-        { "type": "text", "id": "text", "label": "Announcement Text", "default": "Welcome to our store!" },
-        { "type": "color", "id": "background_color", "label": "Tile Background Color", "default": "#000000" },
-        { "type": "color", "id": "text_color", "label": "Tile Text Color", "default": "#ffffff" },
-        { "type": "text", "id": "padding", "label": "Tile Padding", "default": "0 1rem" },
-        { "type": "text", "id": "font_size", "label": "Tile Font Size", "default": "1rem" },
-        { "type": "text", "id": "font_weight", "label": "Tile Font Weight", "default": "600" }
+      { "type": "text", "id": "text", "label": "Announcement Text", "default": "Welcome to our store!" },
+      { "type": "url", "id": "link", "label": "Link URL", "default": "#" },
+      { "type": "color", "id": "background_color", "label": "Tile Background Color", "default": "#000000" },
+      { "type": "checkbox", "id": "dismissible", "label": "Dismissible", "default": false },
+      { "type": "color", "id": "text_color", "label": "Tile Text Color", "default": "#ffffff" },
+      { "type": "text", "id": "padding", "label": "Tile Padding", "default": "0 1rem" },
+      { "type": "text", "id": "font_size", "label": "Tile Font Size", "default": "1rem" },
+      { "type": "text", "id": "font_weight", "label": "Tile Font Weight", "default": "600" }
       ]
     }
   ],

@@ -27,16 +27,28 @@
       "label": "Show Collection Description",
       "default": false
     },
-    {
-      "type": "select",
-      "id": "text_align",
-      "label": "Text Alignment",
-      "default": "center",
-      "options": [
-        { "value": "left", "label": "Left" },
-        { "value": "center", "label": "Center" },
-        { "value": "right", "label": "Right" }
-      ]
-    }
-  ]
-}
+      {
+        "type": "select",
+        "id": "text_align",
+        "label": "Text Alignment",
+        "default": "center",
+        "options": [
+          { "value": "left", "label": "Left" },
+          { "value": "center", "label": "Center" },
+          { "value": "right", "label": "Right" }
+        ]
+      }
+    ],
+    "blocks": [
+      {
+        "type": "collection",
+        "name": "Collection",
+        "settings": [
+          { "type": "text", "id": "collection_title", "label": "Title" },
+          { "type": "image", "id": "image", "label": "Image" },
+          { "type": "url", "id": "link", "label": "Link", "default": "#" }
+        ]
+      }
+    ],
+    "max_blocks": 10
+  }

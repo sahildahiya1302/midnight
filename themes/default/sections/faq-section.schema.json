@@ -34,8 +34,19 @@
         {
           "question": "Is your jewelry real silver?",
           "answer": "Yes, we use 925 sterling silver in all products."
-        }
-      ]
-    }
+      }
+    ],
+    "blocks": [
+      {
+        "type": "faq",
+        "name": "FAQ",
+        "settings": [
+          { "type": "text", "id": "question", "label": "Question" },
+          { "type": "textarea", "id": "answer", "label": "Answer" }
+        ]
+      }
+    ],
+    "max_blocks": 10
+  }
   ]
 }

@@ -6,27 +6,41 @@ $maxCollections = intval($settings['max_collections'] ?? 6);
 $textAlign = $settings['text_align'] ?? 'center';
 $showDescription = $settings['show_description'] ?? false;
 
-// Example data. Replace this with a DB/API call like getFeaturedCollections()
-$collections = [
-  [
-    'title' => 'Rings',
-    'handle' => 'rings',
-    'image' => '/assets/collections/rings.jpg',
-    'description' => 'Timeless silver rings for every occasion.'
-  ],
-  [
-    'title' => 'Necklaces',
-    'handle' => 'necklaces',
-    'image' => '/assets/collections/necklaces.jpg',
-    'description' => 'Elegant silver necklaces crafted for elegance.'
-  ],
-  [
-    'title' => 'Bracelets',
-    'handle' => 'bracelets',
-    'image' => '/assets/collections/bracelets.jpg',
-    'description' => 'Bold and minimal bracelet pieces.'
-  ]
-];
+$collections = [];
+if (!empty($blocks)) {
+    foreach ($blocks as $block) {
+        if (($block['type'] ?? '') === 'collection') {
+            $collections[] = [
+                'title' => $block['settings']['collection_title'] ?? '',
+                'image' => $block['settings']['image'] ?? '',
+                'link'  => $block['settings']['link'] ?? '#'
+            ];
+        }
+    }
+}
+if (empty($collections)) {
+    // Example data. Replace this with a DB/API call like getFeaturedCollections()
+    $collections = [
+      [
+        'title' => 'Rings',
+        'link'  => '/collections/rings',
+        'image' => '/assets/collections/rings.jpg',
+        'description' => 'Timeless silver rings for every occasion.'
+      ],
+      [
+        'title' => 'Necklaces',
+        'link'  => '/collections/necklaces',
+        'image' => '/assets/collections/necklaces.jpg',
+        'description' => 'Elegant silver necklaces crafted for elegance.'
+      ],
+      [
+        'title' => 'Bracelets',
+        'link'  => '/collections/bracelets',
+        'image' => '/assets/collections/bracelets.jpg',
+        'description' => 'Bold and minimal bracelet pieces.'
+      ]
+    ];
+}
 
 if (!function_exists('escape_html')) {
   function escape_html($str) {
@@ -102,7 +116,7 @@ if (!function_exists('escape_html')) {
 
   <div class="collection-grid">
     <?php foreach (array_slice($collections, 0, $maxCollections) as $collection): ?>
-      <a href="/collections/<?= escape_html($collection['handle']) ?>" class="collection-card">
+      <a href="<?= escape_html($collection['link']) ?>" class="collection-card">
         <img src="<?= escape_html($collection['image']) ?>" alt="<?= escape_html($collection['title']) ?>">
         <div class="content">
           <h3><?= escape_html($collection['title']) ?></h3>

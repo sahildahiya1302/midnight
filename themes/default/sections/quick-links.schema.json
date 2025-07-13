@@ -47,5 +47,17 @@
         }
       ]
     }
-  ]
+  ],
+  "blocks": [
+    {
+      "type": "link",
+      "name": "Link",
+      "settings": [
+        { "type": "text", "id": "label", "label": "Label" },
+        { "type": "image", "id": "icon", "label": "Icon" },
+        { "type": "url", "id": "link", "label": "Link" }
+      ]
+    }
+  ],
+  "max_blocks": 6
 }

@@ -2,7 +2,17 @@
 $id = $id ?? 'footer-' . uniqid();
 $logo = $settings['logo'] ?? '';
 $copyright = $settings['copyright'] ?? '';
-$menus = $settings['menus'] ?? [];
+$menus = [];
+if (!empty($blocks)) {
+    foreach ($blocks as $block) {
+        if (($block['type'] ?? '') === 'menu') {
+            $menus[] = $block['settings'] ?? [];
+        }
+    }
+}
+if (empty($menus)) {
+    $menus = $settings['menus'] ?? [];
+}
 
 if (!function_exists('escape_html')) {
   function escape_html($str) {

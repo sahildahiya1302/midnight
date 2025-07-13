@@ -45,5 +45,16 @@
         }
       ]
     }
-  ]
+  ],
+  "blocks": [
+    {
+      "type": "badge",
+      "name": "Badge",
+      "settings": [
+        { "type": "image", "id": "icon", "label": "Icon" },
+        { "type": "text", "id": "label", "label": "Label" }
+      ]
+    }
+  ],
+  "max_blocks": 6
 }

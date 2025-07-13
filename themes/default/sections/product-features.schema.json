@@ -54,5 +54,17 @@
         { "value": "right", "label": "Right" }
       ]
     }
-  ]
+  ],
+  "blocks": [
+    {
+      "type": "feature",
+      "name": "Feature",
+      "settings": [
+        { "type": "image", "id": "icon", "label": "Icon" },
+        { "type": "text", "id": "title", "label": "Title" },
+        { "type": "textarea", "id": "description", "label": "Description" }
+      ]
+    }
+  ],
+  "max_blocks": 5
 }

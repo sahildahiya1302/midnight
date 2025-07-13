@@ -23,6 +23,19 @@ $logoAlignment = get_setting('logo_alignment', 'left');
 $showSearch = get_setting('show_search', true);
 $searchPlaceholder = get_setting('search_placeholder', 'Search Gifts for your dearest...');
 $menuItems = get_setting('menu_items', []);
+$blocks = $blocks ?? [];
+if (!empty($blocks)) {
+    $menuItems = [];
+    foreach ($blocks as $block) {
+        if ($block['type'] === 'menu_item') {
+            $menuItems[] = $block['settings'];
+        } elseif ($block['type'] === 'logo') {
+            $logoImage = $block['settings']['logo_image'] ?? $logoImage;
+        } elseif ($block['type'] === 'search_toggle') {
+            $showSearch = true;
+        }
+    }
+}
 $headerIcons = get_setting('header_icons', []);
 $headerSticky = get_setting('header_sticky', false);
 $backgroundColor = get_setting('background_color', '#ffffff');

@@ -16,7 +16,9 @@ if (empty($tiles)) {
     $tiles = $settings['tiles'] ?? [
         [
             'text' => 'Welcome to our store!',
+            'link' => '#',
             'background_color' => '#000000',
+            'dismissible' => false,
             'text_color' => '#ffffff',
             'padding' => '0 1rem',
             'font_size' => '1rem',
@@ -35,7 +37,9 @@ if (!is_array($tiles)) {
     $tiles = [
         [
             'text' => 'Welcome to our store!',
+            'link' => '#',
             'background_color' => '#000000',
+            'dismissible' => false,
             'text_color' => '#ffffff',
             'padding' => '0 1rem',
             'font_size' => '1rem',
@@ -122,6 +126,15 @@ if (!function_exists('escape_html')) {
   line-height: 2em;
 }
 
+.dismiss-btn {
+  background: transparent;
+  border: none;
+  color: inherit;
+  font-size: 1em;
+  margin-left: 0.5rem;
+  cursor: pointer;
+}
+
 @keyframes scroll-vertical {
   0% {
     top: 0;
@@ -138,6 +151,8 @@ if (!function_exists('escape_html')) {
     <?php foreach ($tiles as $tile): ?>
       <?php
         $tileText = $tile['text'] ?? 'Announcement';
+        $tileLink = $tile['link'] ?? '';
+        $tileDismiss = !empty($tile['dismissible']);
         $tileColor = $tile['text_color'] ?? $textColor;
         $tileBg = $tile['background_color'] ?? $backgroundColor;
         $tilePadding = $tile['padding'] ?? '0 1rem';
@@ -152,8 +167,17 @@ if (!function_exists('escape_html')) {
         font-weight: <?= escape_html($tileFontWeight) ?>;
         margin-right: 2rem;
         display: inline-block;
-      ">
-        <?= escape_html($tileText) ?>
+        position: relative;">
+        <?php if ($tileLink): ?>
+          <a href="<?= escape_html($tileLink) ?>" style="color: inherit; text-decoration: none;">
+            <?= escape_html($tileText) ?>
+          </a>
+        <?php else: ?>
+          <?= escape_html($tileText) ?>
+        <?php endif; ?>
+        <?php if ($tileDismiss): ?>
+          <button class="dismiss-btn" onclick="this.parentElement.style.display='none';" aria-label="Dismiss">×</button>
+        <?php endif; ?>
       </span>
     <?php endforeach; ?>
   </div>

@@ -2,7 +2,17 @@
 $id = $id ?? 'step-guide-' . uniqid();
 $heading = $settings['heading'] ?? 'How It Works';
 $subheading = $settings['subheading'] ?? '';
-$steps = $settings['steps'] ?? [];
+$steps = [];
+if (!empty($blocks)) {
+    foreach ($blocks as $block) {
+        if (($block['type'] ?? '') === 'step') {
+            $steps[] = $block['settings'];
+        }
+    }
+}
+if (empty($steps)) {
+    $steps = $settings['steps'] ?? [];
+}
 
 if (!function_exists('escape_html')) {
   function escape_html($str) {

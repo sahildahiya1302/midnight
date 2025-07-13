@@ -41,5 +41,18 @@
         }
       ]
     }
-  ]
+  ],
+  "blocks": [
+    {
+      "type": "promo",
+      "name": "Promo",
+      "settings": [
+        { "type": "image", "id": "image", "label": "Image" },
+        { "type": "text", "id": "title", "label": "Title" },
+        { "type": "text", "id": "subtitle", "label": "Subtitle" },
+        { "type": "url", "id": "link", "label": "Link" }
+      ]
+    }
+  ],
+  "max_blocks": 6
 }

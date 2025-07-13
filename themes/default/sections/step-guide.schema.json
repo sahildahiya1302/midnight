@@ -43,5 +43,17 @@
         }
       ]
     }
-  ]
+  ],
+  "blocks": [
+    {
+      "type": "step",
+      "name": "Step",
+      "settings": [
+        { "type": "number", "id": "step_number", "label": "Step Number" },
+        { "type": "text", "id": "title", "label": "Title" },
+        { "type": "textarea", "id": "description", "label": "Description" }
+      ]
+    }
+  ],
+  "max_blocks": 5
 }

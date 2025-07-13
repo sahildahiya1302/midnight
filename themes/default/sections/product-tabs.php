@@ -1,6 +1,19 @@
 <?php
 $id = $id ?? 'product-tabs-' . uniqid();
-$tabs = $settings['tabs'] ?? [];
+$tabs = [];
+if (!empty($blocks)) {
+    foreach ($blocks as $block) {
+        if (($block['type'] ?? '') === 'tab') {
+            $tabs[] = [
+                'label' => $block['settings']['tab_title'] ?? '',
+                'content' => $block['settings']['content'] ?? ''
+            ];
+        }
+    }
+}
+if (empty($tabs)) {
+    $tabs = $settings['tabs'] ?? [];
+}
 $defaultTab = 0;
 
 if (!function_exists('escape_html')) {

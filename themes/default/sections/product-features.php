@@ -2,7 +2,17 @@
 $id = $id ?? 'product-features-' . uniqid();
 $heading = $settings['heading'] ?? 'Product Features';
 $subheading = $settings['subheading'] ?? '';
-$features = $settings['features'] ?? [];
+$features = [];
+if (!empty($blocks)) {
+    foreach ($blocks as $block) {
+        if (($block['type'] ?? '') === 'feature') {
+            $features[] = $block['settings'];
+        }
+    }
+}
+if (empty($features)) {
+    $features = $settings['features'] ?? [];
+}
 $textAlign = $settings['text_align'] ?? 'center';
 
 if (!function_exists('escape_html')) {

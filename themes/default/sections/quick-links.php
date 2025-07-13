@@ -2,7 +2,21 @@
 $id = $id ?? 'quick-links-' . uniqid();
 $heading = $settings['heading'] ?? 'Quick Links';
 $layout = $settings['layout'] ?? 'inline'; // inline or grid
-$links = $settings['links'] ?? [];
+$links = [];
+if (!empty($blocks)) {
+    foreach ($blocks as $block) {
+        if (($block['type'] ?? '') === 'link') {
+            $links[] = [
+                'label' => $block['settings']['label'] ?? '',
+                'icon' => $block['settings']['icon'] ?? '',
+                'link' => $block['settings']['link'] ?? '#'
+            ];
+        }
+    }
+}
+if (empty($links)) {
+    $links = $settings['links'] ?? [];
+}
 
 if (!function_exists('escape_html')) {
   function escape_html($str) {

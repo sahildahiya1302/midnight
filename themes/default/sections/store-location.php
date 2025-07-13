@@ -8,6 +8,13 @@ $email = $settings['email'] ?? '';
 $hours = $settings['hours'] ?? 'Mon–Fri: 9am–7pm';
 $mapEmbed = $settings['map_embed'] ?? ''; // iframe code from Google Maps
 
+if (!empty($blocks)) {
+    $block = $blocks[0];
+    $storeName = $block['settings']['name'] ?? $storeName;
+    $address = $block['settings']['address'] ?? $address;
+    $mapEmbed = $block['settings']['map_link'] ?? $mapEmbed;
+}
+
 if (!function_exists('escape_html')) {
   function escape_html($str) {
     return htmlspecialchars($str, ENT_QUOTES, 'UTF-8');

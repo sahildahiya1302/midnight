@@ -52,5 +52,16 @@
         "label": "Logo Image"
       }
     }
-  ]
+  ],
+  "blocks": [
+    {
+      "type": "logo",
+      "name": "Logo",
+      "settings": [
+        { "type": "image", "id": "brand_image", "label": "Brand Image" },
+        { "type": "url", "id": "brand_link", "label": "Brand Link", "default": "#" }
+      ]
+    }
+  ],
+  "max_blocks": 10
 }

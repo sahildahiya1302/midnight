@@ -1,6 +1,16 @@
 <?php
 $id = $id ?? 'trust-badges-' . uniqid();
-$badges = $settings['badges'] ?? [];
+$badges = [];
+if (!empty($blocks)) {
+    foreach ($blocks as $block) {
+        if (($block['type'] ?? '') === 'badge') {
+            $badges[] = $block['settings'];
+        }
+    }
+}
+if (empty($badges)) {
+    $badges = $settings['badges'] ?? [];
+}
 $columns = intval($settings['columns'] ?? 4);
 $background = $settings['background'] ?? '#f5f5f5';
 

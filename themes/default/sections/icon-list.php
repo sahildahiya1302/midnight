@@ -1,7 +1,17 @@
 <?php
 $id = $id ?? 'icon-list-' . uniqid();
 $heading = $settings['heading'] ?? 'Why Shop With Us';
-$icons = $settings['icons'] ?? [];
+$icons = [];
+if (!empty($blocks)) {
+    foreach ($blocks as $block) {
+        if (($block['type'] ?? '') === 'icon') {
+            $icons[] = $block['settings'];
+        }
+    }
+}
+if (empty($icons)) {
+    $icons = $settings['icons'] ?? [];
+}
 ?>
 
 <style>

@@ -6,7 +6,20 @@ $maxLogos = intval($settings['max_logos'] ?? 10);
 $autoplay = $settings['autoplay'] ?? true;
 $textAlign = $settings['text_align'] ?? 'center';
 
-$logos = $settings['logos'] ?? []; // array of image URLs
+$logos = [];
+if (!empty($blocks)) {
+    foreach ($blocks as $block) {
+        if (($block['type'] ?? '') === 'logo') {
+            $logos[] = [
+                'image' => $block['settings']['brand_image'] ?? '',
+                'link'  => $block['settings']['brand_link'] ?? ''
+            ];
+        }
+    }
+}
+if (empty($logos)) {
+    $logos = $settings['logos'] ?? [];
+}
 
 if (!function_exists('escape_html')) {
   function escape_html($str) {
@@ -66,7 +79,13 @@ if (!function_exists('escape_html')) {
     <div class="brand-grid">
       <?php foreach (array_slice($logos, 0, $maxLogos) as $logo): ?>
         <div class="logo-item">
-          <img src="<?= escape_html($logo['image'] ?? '') ?>" alt="Brand Logo">
+          <?php if (!empty($logo['link'])): ?>
+            <a href="<?= escape_html($logo['link']) ?>">
+              <img src="<?= escape_html($logo['image'] ?? '') ?>" alt="Brand Logo">
+            </a>
+          <?php else: ?>
+            <img src="<?= escape_html($logo['image'] ?? '') ?>" alt="Brand Logo">
+          <?php endif; ?>
         </div>
       <?php endforeach; ?>
     </div>
@@ -76,7 +95,13 @@ if (!function_exists('escape_html')) {
       <div class="swiper-wrapper">
         <?php foreach (array_slice($logos, 0, $maxLogos) as $logo): ?>
           <div class="swiper-slide logo-item">
-            <img src="<?= escape_html($logo['image'] ?? '') ?>" alt="Brand Logo">
+            <?php if (!empty($logo['link'])): ?>
+              <a href="<?= escape_html($logo['link']) ?>">
+                <img src="<?= escape_html($logo['image'] ?? '') ?>" alt="Brand Logo">
+              </a>
+            <?php else: ?>
+              <img src="<?= escape_html($logo['image'] ?? '') ?>" alt="Brand Logo">
+            <?php endif; ?>
           </div>
         <?php endforeach; ?>
       </div>

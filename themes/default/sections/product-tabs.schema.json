@@ -27,5 +27,16 @@
         }
       ]
     }
-  ]
+  ],
+  "blocks": [
+    {
+      "type": "tab",
+      "name": "Tab",
+      "settings": [
+        { "type": "text", "id": "tab_title", "label": "Tab Title" },
+        { "type": "richtext", "id": "content", "label": "Content" }
+      ]
+    }
+  ],
+  "max_blocks": 5
 }
