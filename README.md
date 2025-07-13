@@ -227,6 +227,7 @@ This layout mirrors a minimal Shopify-style theme system with a corresponding ad
 - Added device-aware rendering via `applyResponsiveSettings` and user agent detection.
 - Added sticky add-to-cart bar on product pages for improved mobile UX.
 - Added cookie consent banner and localStorage tracking for GDPR compliance.
+- Reorganized the admin navigation with new Sales & Marketing and Content & Pages sections.
 - Captures UTM campaign parameters into session and stores them on orders (migration `021_add_utm_columns_to_orders.sql`).
 
 ## Database Migrations
