@@ -51,8 +51,8 @@ try {
     $variants = $_POST['variants'] ?? [];
     foreach ($variants as $v) {
         $sku = trim($v['sku'] ?? '');
-        $price = isset($v['price']) ? (float)$v['price'] : 0;
-        $compare = isset($v['compare_price']) ? (float)$v['compare_price'] : null;
+        $price = isset($v['price']) ? parse_price($v['price']) : 0;
+        $compare = isset($v['compare_price']) ? parse_price($v['compare_price']) : null;
         $option = trim(($v['option_name'] ?? '') . ' ' . ($v['option_value'] ?? ''));
         $image = trim($v['image'] ?? '');
         $stock = isset($v['inventory']) ? (int)$v['inventory'] : 0;

@@ -415,6 +415,17 @@ if (!function_exists('getProductByHandle')) {
     }
 }
 
+if (!function_exists('getProductVariants')) {
+    /**
+     * Fetch variants for a product.
+     */
+    function getProductVariants(int $productId): array
+    {
+        $stmt = db_query('SELECT * FROM product_variants WHERE product_id = :pid ORDER BY id', [':pid' => $productId]);
+        return $stmt->fetchAll();
+    }
+}
+
 if (!function_exists('getCollectionBySlug')) {
     function getCollectionBySlug(string $slug): ?array
     {

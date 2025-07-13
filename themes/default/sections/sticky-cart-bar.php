@@ -108,6 +108,7 @@ if (!function_exists('escape_html')) {
     <div class="product-info">
       <div class="product-title"><?= escape_html($title) ?></div>
       <div class="product-price">₹<?= $price ?></div>
+      <?= renderPartial('variant-selector', ['id' => $id . '-var']) ?>
     </div>
   </div>
   <button class="add-to-cart-btn" onclick="addToCartSticky<?= $productId ?>()"><?= escape_html($buttonLabel) ?></button>

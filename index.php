@@ -68,6 +68,7 @@ if (str_starts_with($route, 'product:')) {
     if (!$context['product']) {
         notFound();
     }
+    $context['product_variants'] = getProductVariants((int)$context['product']['id']);
     $layoutData = loadThemeLayout('product');
     $content = renderLayoutArray($layoutData);
     include THEME_PATH . '/layouts/theme.php';
