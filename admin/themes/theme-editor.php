@@ -91,9 +91,6 @@ foreach (glob($sectionsDir . "/*.schema.json") as $schemaFile) {
       <div id="section-list" aria-live="polite" aria-relevant="additions removals">
         <!-- Sections will be loaded here -->
       </div>
-      <div class="add-section">
-        <button id="open-add-section" data-group="template">Add Section</button>
-      </div>
       <div id="version-history">
         <h3>Version History</h3>
         <ul id="version-list"></ul>
@@ -111,7 +108,6 @@ foreach (glob($sectionsDir . "/*.schema.json") as $schemaFile) {
   const pageSelect = document.getElementById('page-select');
   const pageTypeLabel = document.getElementById('page-type-label');
   const sectionList = document.getElementById('section-list');
-  const openAddBtn = document.getElementById('open-add-section');
   const modal = document.getElementById('add-section-modal');
   const sectionSearch = document.getElementById('section-search');
   const searchInput = document.getElementById('section-filter');
@@ -119,6 +115,7 @@ foreach (glob($sectionsDir . "/*.schema.json") as $schemaFile) {
   const deviceButtons = document.querySelectorAll('.device-toggle button');
 
   let addTargetGroup = 'template';
+  let addTargetIndex = null;
 
   let currentLayout = [];
   let currentPage = '<?php echo htmlspecialchars($pageType); ?>';
@@ -250,12 +247,28 @@ let fileSlug = page;
 
     li.addEventListener('click', () => {
       sectionList.style.display = 'none';
-      document.querySelector('.add-section').style.display = 'none';
       selectedSectionIndex = index;
       renderSections();
       showCustomizer(index);
     });
 
+    return li;
+  }
+
+  function buildAddLine(pos) {
+    const li = document.createElement('li');
+    li.className = 'add-section-line';
+    const btn = document.createElement('button');
+    btn.type = 'button';
+    btn.textContent = '+ Add Section';
+    btn.addEventListener('click', e => {
+      e.stopPropagation();
+      addTargetIndex = pos;
+      modal.style.display = 'flex';
+      sectionSearch.value = '';
+      filterCards('');
+    });
+    li.appendChild(btn);
     return li;
   }
 
@@ -284,7 +297,6 @@ let fileSlug = page;
       backBtn.style.fontWeight = 'bold';
       backBtn.addEventListener('click', () => {
         sectionList.style.display = 'block';
-        document.querySelector('.add-section').style.display = 'block';
         customizer.style.display = 'none';
         const form = document.getElementById('customizer-form');
         if (form) form.innerHTML = '';
@@ -313,21 +325,15 @@ let fileSlug = page;
       wrapper.appendChild(header);
       const ul = document.createElement('ul');
       ul.className = 'section-group-list';
-      arr.forEach(item => {
-        if (filter && !item.section.type.toLowerCase().includes(filter)) return;
+      arr.forEach((item, idx) => {
+        if (idx === 0) ul.appendChild(buildAddLine(item.index));
+        if (filter && !item.section.type.toLowerCase().includes(filter)) {
+          return ul.appendChild(buildAddLine(item.index + 1));
+        }
         ul.appendChild(buildSectionItem(item.section, item.index));
+        ul.appendChild(buildAddLine(item.index + 1));
       });
       wrapper.appendChild(ul);
-      const addBtn = document.createElement('button');
-      addBtn.className = 'add-section-inline';
-      addBtn.textContent = `+ Add section under ${g.charAt(0).toUpperCase()+g.slice(1)}`;
-      addBtn.addEventListener('click', () => {
-        addTargetGroup = g;
-        modal.style.display = 'flex';
-        sectionSearch.value = '';
-        filterCards('');
-      });
-      wrapper.appendChild(addBtn);
       sectionList.appendChild(wrapper);
     });
     addDragAndDropHandlers();
@@ -624,6 +630,34 @@ let fileSlug = page;
 
       function renderBlocks() {
         blockList.innerHTML = '';
+
+        const buildAddBlock = (pos) => {
+          const wrap = document.createElement('div');
+          wrap.className = 'add-block-line';
+          const sel = addSelect.cloneNode(true);
+          sel.value = '';
+          const btn = document.createElement('button');
+          btn.textContent = 'Add Block';
+          btn.addEventListener('click', () => {
+            const type = sel.value;
+            if (!type) return;
+            const bSchema = schema.blocks.find(b => b.type === type) || {settings:[]};
+            const settings = {};
+            (bSchema.settings || []).forEach(s => { settings[s.id] = s.default ?? ''; });
+            if (!Array.isArray(section.blocks)) section.blocks = [];
+            section.blocks.splice(pos, 0, {type, settings});
+            layoutDirty = true;
+            renderBlocks();
+            updatePreview();
+          });
+          wrap.appendChild(sel);
+          wrap.appendChild(btn);
+          return wrap;
+        };
+
+        const addLineStart = buildAddBlock(0);
+        blockList.appendChild(addLineStart);
+
         (section.blocks || []).forEach((block, bIndex) => {
           const blockDiv = document.createElement('div');
           blockDiv.style.border = '1px solid #ccc';
@@ -715,13 +749,13 @@ let fileSlug = page;
           });
 
           blockList.appendChild(blockDiv);
+          blockList.appendChild(buildAddBlock(bIndex + 1));
         });
       }
-
       const addSelect = document.createElement('select');
       const blank = document.createElement('option');
       blank.value = '';
-      blank.textContent = '-- Add Block --';
+      blank.textContent = '-- Block Type --';
       addSelect.appendChild(blank);
       schema.blocks.forEach(b => {
         const opt = document.createElement('option');
@@ -729,26 +763,7 @@ let fileSlug = page;
         opt.textContent = b.name || b.type;
         addSelect.appendChild(opt);
       });
-
-      const addBtn = document.createElement('button');
-      addBtn.textContent = 'Add';
-      addBtn.addEventListener('click', () => {
-        const type = addSelect.value;
-        if (!type) return;
-        const bSchema = schema.blocks.find(b => b.type === type) || {settings:[]};
-        const settings = {};
-        (bSchema.settings || []).forEach(s => { settings[s.id] = s.default ?? ''; });
-        if (!Array.isArray(section.blocks)) section.blocks = [];
-        section.blocks.push({type, settings});
-        addSelect.value = '';
-        layoutDirty = true;
-        renderBlocks();
-        updatePreview();
-      });
-
-      blocksWrapper.appendChild(addSelect);
-      blocksWrapper.appendChild(addBtn);
-
+      blocksWrapper.appendChild(blockList);
       form.appendChild(blocksWrapper);
       renderBlocks();
     }
@@ -879,29 +894,27 @@ let fileSlug = page;
           const bs = {}; (b.settings||[]).forEach(s=>{bs[s.id]=s.default??''});
           return {type:b.type, settings: bs};
         });
-        let insertIndex = currentLayout.length;
-        if (group === 'header') {
-          insertIndex = currentLayout.findIndex(s => !(s.type.includes('header') || s.type.includes('announcement')));
-          if (insertIndex === -1) insertIndex = 0;
-        } else if (group === 'template') {
-          insertIndex = currentLayout.findIndex(s => s.type.includes('footer'));
-          if (insertIndex === -1) insertIndex = currentLayout.length;
+        let insertIndex = addTargetIndex !== null ? addTargetIndex : currentLayout.length;
+        if (insertIndex < 0 || insertIndex > currentLayout.length) insertIndex = currentLayout.length;
+        if (addTargetIndex === null) {
+          if (group === 'header') {
+            insertIndex = currentLayout.findIndex(s => !(s.type.includes('header') || s.type.includes('announcement')));
+            if (insertIndex === -1) insertIndex = 0;
+          } else if (group === 'template') {
+            insertIndex = currentLayout.findIndex(s => s.type.includes('footer'));
+            if (insertIndex === -1) insertIndex = currentLayout.length;
+          }
         }
         const newSec = { id: uniqueId, type: sectionType, settings: defaultSettings, blocks };
         currentLayout.splice(insertIndex, 0, newSec);
         renderSections(); layoutDirty = true; updatePreview();
+        addTargetIndex = null;
       }).catch(err => {
         console.error('Failed adding section', err);
         alert('Could not add section');
       });
   }
 
-  openAddBtn.addEventListener('click', () => {
-    addTargetGroup = openAddBtn.dataset.group || 'template';
-    modal.style.display = 'flex';
-    sectionSearch.value = '';
-    filterCards('');
-  });
 
   // Publish button simply calls save then reloads preview
   document.getElementById('publish-layout-btn').addEventListener('click', async () => {
@@ -928,6 +941,7 @@ let fileSlug = page;
     card.addEventListener('click', () => {
       modal.style.display = 'none';
       addSectionOfType(card.dataset.type, addTargetGroup);
+      addTargetIndex = null;
     });
   });
 
@@ -996,6 +1010,14 @@ async function saveLayout() {
     page: currentPage,
     layout: layoutObj
   };
+
+  // Validate JSON before sending
+  try {
+    JSON.parse(JSON.stringify(payload));
+  } catch (e) {
+    alert('Layout data is invalid and could not be saved.');
+    return;
+  }
 
   try {
     const response = await fetch('/admin/api/save-layout.php', {
