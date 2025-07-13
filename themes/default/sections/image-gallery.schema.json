@@ -1,0 +1,15 @@
+{
+  "name": "Image Gallery",
+  "settings": [
+    { "type": "text", "id": "heading", "label": "Heading", "default": "Gallery" },
+    {
+      "type": "list",
+      "id": "images",
+      "label": "Images",
+      "item": {
+        "type": "image",
+        "label": "Gallery Image"
+      }
+    }
+  ]
+}
