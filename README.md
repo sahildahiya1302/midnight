@@ -243,3 +243,5 @@ Run the SQL files in the `migrations/` directory in order to set up or update th
 - Added cookie consent banner for GDPR compliance.
 - Added additional security headers (Referrer-Policy, Permissions-Policy, X-Permitted-Cross-Domain-Policies)
 - Introduced single-level admin navigation with slide-out panels for quick access to sections.
+- Added placeholder admin pages for Products, Orders, Customers, Pages & Content,
+  Reports, Settings, and Theme Editor to support the new navigation.
