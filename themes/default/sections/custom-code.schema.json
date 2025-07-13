@@ -1,8 +1,0 @@
-{
-  "name": "Custom Code",
-  "settings": [
-    { "type": "textarea", "id": "custom_html", "label": "Custom HTML", "default": "" },
-    { "type": "textarea", "id": "custom_css", "label": "Custom CSS", "default": "" },
-    { "type": "textarea", "id": "custom_js", "label": "Custom JavaScript", "default": "" }
-  ]
-}
