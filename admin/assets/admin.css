@@ -156,6 +156,16 @@ body, html {
   user-select: none;
 }
 
+.nav-item > a {
+  color: white;
+  text-decoration: none;
+  display: block;
+}
+
+.nav-item > a:hover {
+  text-decoration: underline;
+}
+
 .nav-item:hover {
   background-color: #34495e;
 }
@@ -183,6 +193,11 @@ body, html {
 
 .sub-nav li a:hover {
   background-color: #3d566e;
+}
+
+.nav-item > a.active,
+.sub-nav li a.active {
+  font-weight: bold;
 }
 
 .content {

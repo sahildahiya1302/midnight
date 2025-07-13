@@ -1,23 +1,28 @@
 document.addEventListener('DOMContentLoaded', () => {
-  const panel = document.getElementById('panel');
-  document.querySelectorAll('.nav-item[data-url]').forEach(item => {
-    item.addEventListener('click', () => {
-      const url = item.dataset.url;
-      if (item.dataset.external === '1') {
-        window.open(url, '_blank');
-        return;
-      }
-      if (panel) {
-        panel.innerHTML = `<iframe src="${url}"></iframe>`;
-        panel.classList.add('open');
+  const navItems = document.querySelectorAll('.nav-item');
+  const current = window.location.pathname;
+
+  navItems.forEach(item => {
+    const parentLink = item.querySelector(':scope > a');
+    const subLinks = item.querySelectorAll('.sub-nav a');
+
+    // expand if current page matches parent or a sub link
+    if (parentLink && parentLink.getAttribute('href') === current) {
+      item.classList.add('expanded');
+      parentLink.classList.add('active');
+    }
+    subLinks.forEach(link => {
+      if (link.getAttribute('href') === current) {
+        item.classList.add('expanded');
+        link.classList.add('active');
       }
     });
-  });
 
-  document.addEventListener('keydown', e => {
-    if (e.key === 'Escape' && panel.classList.contains('open')) {
-      panel.classList.remove('open');
-      panel.innerHTML = '';
-    }
+    item.addEventListener('click', e => {
+      if (e.target.closest('.sub-nav')) {
+        return; // don't toggle when clicking sub nav links
+      }
+      item.classList.toggle('expanded');
+    });
   });
 });
