@@ -12,6 +12,10 @@ This project provides a lightweight PHP storefront and admin panel. Below is the
 /robots.txt                     - Basic robots file
 /sitemap.xml                    - Sitemap placeholder
 
+The admin panel features a visual theme editor for arranging sections and blocks.
+Developers can modify template files directly using the lightweight **Code Editor** at
+`/admin/themes/code-editor.php`.
+
 /themes/
   /default/
     /layouts/

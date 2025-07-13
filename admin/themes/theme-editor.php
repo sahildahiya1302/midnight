@@ -56,7 +56,9 @@ foreach (glob($sectionsDir . "/*.schema.json") as $schemaFile) {
       <select id="page-select" aria-label="Select page to edit">
         <option value="">-- Select Page --</option>
       </select>
-      <button id="save-layout-btn">Save Changes</button>
+      <button id="save-layout-btn">Save Draft</button>
+      <button id="publish-layout-btn">Publish</button>
+      <a href="/admin/themes/code-editor.php" target="_blank" class="code-link">Edit Code</a>
       <div class="device-toggle">
         <button type="button" data-width="100%" class="active" id="device-desktop">Desktop</button>
         <button type="button" data-width="768px" id="device-tablet">Tablet</button>
@@ -899,6 +901,15 @@ let fileSlug = page;
     modal.style.display = 'flex';
     sectionSearch.value = '';
     filterCards('');
+  });
+
+  // Publish button simply calls save then reloads preview
+  document.getElementById('publish-layout-btn').addEventListener('click', async () => {
+    await document.getElementById('save-layout-btn').click();
+    if (!layoutDirty) {
+      alert('Published successfully.');
+      updatePreview();
+    }
   });
 
   document.querySelector('#add-section-modal .close-modal').addEventListener('click', () => {
