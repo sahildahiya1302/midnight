@@ -318,7 +318,8 @@ let fileSlug = page;
       wrapper.appendChild(ul);
       const addBtn = document.createElement('button');
       addBtn.className = 'add-section-inline';
-      addBtn.textContent = `+ Add section under ${g.charAt(0).toUpperCase()+g.slice(1)}`;
+      addBtn.textContent = '';
+      addBtn.setAttribute('aria-label', `Add section under ${g.charAt(0).toUpperCase()+g.slice(1)}`);
       addBtn.addEventListener('click', () => {
         addTargetGroup = g;
         modal.style.display = 'flex';
