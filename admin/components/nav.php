@@ -6,6 +6,8 @@
         <li><a href="/admin/products/collections.php">Collections</a></li>
         <li><a href="/admin/products/inventory.php">Inventory</a></li>
         <li><a href="/admin/products/reviews.php">Reviews</a></li>
+        <li><a href="/admin/products/import_export.php">Import / Export</a></li>
+        <li><a href="/admin/products/sets.php">Product Sets</a></li>
       </ul>
     </li>
     <li class="nav-item"><a href="/admin/orders/orders.php">Orders</a>
@@ -18,7 +20,6 @@
     </li>
     <li class="nav-item"><a href="/admin/customers/customers.php">Customers</a>
       <ul class="sub-nav">
-        <li><a href="/admin/customers/customers.php">All Customers</a></li>
         <li><a href="/admin/customers/groups.php">Groups & Segments</a></li>
         <li><a href="/admin/customers/abandoned.php">Abandoned Checkouts</a></li>
         <li><a href="/admin/customers/insights.php">Customer Insights</a></li>
@@ -27,7 +28,6 @@
     </li>
     <li class="nav-item"><a href="/admin/marketing/campaigns.php">Sales & Marketing</a>
       <ul class="sub-nav">
-        <li><a href="/admin/marketing/campaigns.php">Ad Campaigns</a></li>
         <li><a href="/admin/marketing/pixels.php">Pixel Integrations</a></li>
         <li><a href="/admin/marketing/funnel.php">UTM & Funnel Tracking</a></li>
         <li><a href="/admin/marketing/emails.php">Email Blasts</a></li>
@@ -37,7 +37,6 @@
     </li>
     <li class="nav-item"><a href="/admin/pages/pages.php">Content & Pages</a>
       <ul class="sub-nav">
-        <li><a href="/admin/pages/pages.php">Website Pages</a></li>
         <li><a href="/admin/blogs.php">Blog Articles</a></li>
         <li><a href="/admin/pages/legal.php">Legal Pages</a></li>
         <li><a href="/admin/pages/templates.php">Page Templates</a></li>
@@ -65,7 +64,6 @@
     </li>
     <li class="nav-item"><a href="/admin/settings/settings.php">Settings & Apps</a>
       <ul class="sub-nav">
-        <li><a href="/admin/settings/settings.php">Store Settings</a></li>
         <li><a href="/admin/settings/integrations.php">Integrations & APIs</a></li>
         <li><a href="/admin/plugins/plugins.php">Plugin Manager</a></li>
       </ul>

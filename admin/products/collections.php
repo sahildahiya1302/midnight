@@ -17,7 +17,7 @@ $page_title = "Collections";
   <meta charset="UTF-8">
   <title><?= htmlspecialchars($page_title) ?></title>
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
-  <link href="/admin/assets/css/admin.css" rel="stylesheet" onerror="console.warn('admin.css not found')">
+  <link href="/admin/assets/admin-modern.css" rel="stylesheet" onerror="console.warn('admin-modern.css not found')">
   <script src="/admin/assets/js/collections.js" defer></script>
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" defer></script>
 </head>

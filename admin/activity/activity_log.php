@@ -21,7 +21,7 @@ $logs = db_query('SELECT activity_logs.*, users.email FROM activity_logs LEFT JO
 <head>
     <meta charset="UTF-8">
     <title>Activity Log</title>
-    <link rel="stylesheet" href="/admin/assets/admin.css">
+    <link rel="stylesheet" href="/admin/assets/admin-modern.css">
 </head>
 <body>
 <?php include __DIR__ . '/../components/header.php'; ?>

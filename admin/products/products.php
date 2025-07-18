@@ -21,7 +21,7 @@ $cache_bust = filemtime(__DIR__ . '/../../admin/assets/js/products.js');
 
   <!-- Bootstrap CSS -->
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
-  <link href="/admin/assets/css/admin.css?v=<?= $cache_bust ?>" rel="stylesheet" onerror="console.warn('admin.css not found')">
+  <link href="/admin/assets/admin-modern.css?v=<?= $cache_bust ?>" rel="stylesheet" onerror="console.warn('admin-modern.css not found')">
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" defer></script>
   <script src="/admin/assets/js/products.js?v=<?= $cache_bust ?>" defer></script>
 </head>
