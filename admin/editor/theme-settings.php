@@ -16,7 +16,7 @@ $schema = is_file($schemaFile) ? json_decode(file_get_contents($schemaFile), tru
 $pageTitle = 'Theme Settings';
 require __DIR__ . '/../components/header.php';
 ?>
-<link rel="stylesheet" href="/admin/assets/admin-modern.css">
+<link rel="stylesheet" href="/admin/assets/admin.css">
 <h1>Theme Settings</h1>
 <div class="settings-wrapper">
   <aside class="settings-menu">

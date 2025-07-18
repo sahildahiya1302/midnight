@@ -46,7 +46,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>Forgot Password</title>
-    <link rel="stylesheet" href="/admin/assets/admin-modern.css" />
+    <link rel="stylesheet" href="/admin/assets/admin.css" />
 </head>
 <body>
     <div class="forgot-password-container">
