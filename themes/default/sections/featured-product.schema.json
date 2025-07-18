@@ -1,0 +1,22 @@
+{
+  "name": "Featured Product",
+  "settings": [
+    {
+      "type": "product_select",
+      "id": "product",
+      "label": "Select Product"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_price",
+      "label": "Show Price",
+      "default": true
+    },
+    {
+      "type": "checkbox",
+      "id": "show_add_to_cart",
+      "label": "Show Add to Cart Button",
+      "default": true
+    }
+  ]
+}

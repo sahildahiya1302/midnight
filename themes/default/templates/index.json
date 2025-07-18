@@ -1,0 +1,247 @@
+{
+    "sections": {
+        "testimonial-slider-md3cn9wj-0zbxr1ijh5yl": {
+            "type": "testimonial-slider",
+            "settings": {
+                "title": "Loved by Thousands",
+                "heading": "thjdojsdjopwkp[we",
+                "testimonials": "xyz ",
+                "stylePreset": "dark"
+            },
+            "blocks": []
+        },
+        "featured-collection-md3cn9wj-jeeej4nbq8p": {
+            "type": "featured-collection",
+            "settings": {
+                "collection_id": "1",
+                "title": "Handpicked Favorites",
+                "heading": "hi this for test ",
+                "max_products": "15"
+            },
+            "blocks": []
+        },
+        "newsletter-md3cn9wj-9y0fh22cpao": {
+            "type": "newsletter",
+            "settings": {
+                "heading": "Stay in Touch",
+                "placeholder": "Enter your email"
+            },
+            "blocks": []
+        },
+        "recently-viewed-md3cn9wj-s8uys20su": {
+            "type": "recently-viewed",
+            "settings": [],
+            "blocks": []
+        },
+        "video-banner-md3cn9wj-ze1s7fhbu1h": {
+            "type": "video-banner",
+            "settings": {
+                "heading_text": "oihoir",
+                "subheading_text": "rege",
+                "badge_text": "rege",
+                "show_badge": true,
+                "secondary_text": "g",
+                "background_type": "undefined"
+            },
+            "blocks": []
+        },
+        "promo-grid-md3cn9wj-vxy5h42qc0h": {
+            "type": "promo-grid",
+            "settings": {
+                "heading": "Featured Promotions",
+                "subheading": "",
+                "promos": [
+                    {
+                        "image": "/assets/promo1.jpg",
+                        "title": "Summer Essentials",
+                        "subtext": "Up to 40% off",
+                        "link": "/collections/summer"
+                    },
+                    {
+                        "image": "/assets/promo2.jpg",
+                        "title": "Sterling Rings",
+                        "subtext": "Shop handcrafted designs",
+                        "link": "/collections/rings"
+                    }
+                ]
+            },
+            "blocks": [
+                {
+                    "type": "promo",
+                    "settings": {
+                        "image": "",
+                        "title": "ew",
+                        "subtitle": "",
+                        "link": ""
+                    }
+                },
+                {
+                    "type": "promo",
+                    "settings": {
+                        "image": "",
+                        "title": "iudsh",
+                        "subtitle": "",
+                        "link": ""
+                    }
+                },
+                {
+                    "type": "promo",
+                    "settings": {
+                        "image": "",
+                        "title": "wew",
+                        "subtitle": "ddsa",
+                        "link": ""
+                    }
+                }
+            ]
+        },
+        "popup-md3cn9wj-qaiv35yfuw9": {
+            "type": "popup",
+            "settings": {
+                "heading": "Get 10% Off!",
+                "subheading": "Subscribe and receive a 10% coupon.",
+                "delay_seconds": 3,
+                "background_color": "#ffffff",
+                "text_color": "#000000"
+            },
+            "blocks": [
+                {
+                    "type": "popup",
+                    "settings": {
+                        "heading": "test2iyu3rhed",
+                        "image": "",
+                        "text": "",
+                        "cta": ""
+                    }
+                },
+                {
+                    "type": "popup",
+                    "settings": {
+                        "heading": "test",
+                        "image": "",
+                        "text": "",
+                        "cta": ""
+                    }
+                }
+            ]
+        },
+        "blog-posts-md3crsfz-9ktuzc19nbd": {
+            "type": "blog-posts",
+            "settings": {
+                "heading": "Latest Articles",
+                "subheading": "",
+                "max_posts": 3,
+                "show_excerpt": true,
+                "show_date": true,
+                "text_align": "center"
+            },
+            "blocks": []
+        },
+        "hero-banner-md3cn9wj-whn2g2bwkv": {
+            "type": "hero-banner",
+            "settings": {
+                "background_image": "",
+                "heading": "Your Hero Heading",
+                "subheading": "Your supporting text or tagline goes here.",
+                "button_text": "Shop Now",
+                "button_link": "#",
+                "text_color": "#ffffff",
+                "text_align": "center",
+                "overlay_color": "rgba(0, 0, 0, 0.4)",
+                "height": "600px"
+            },
+            "blocks": [
+                {
+                    "type": "button",
+                    "settings": {
+                        "button_text": "Shop Now",
+                        "button_link": "#"
+                    }
+                },
+                {
+                    "type": "button",
+                    "settings": {
+                        "button_text": "Shop Nowdfer",
+                        "button_link": "#"
+                    }
+                }
+            ]
+        },
+        "featured-product-md3cn9wj-24wzp1irvyh": {
+            "type": "featured-product",
+            "settings": {
+                "product": "1",
+                "show_price": true,
+                "show_add_to_cart": true
+            },
+            "blocks": []
+        },
+        "announcement-bar-md3csczw-l3dgrtez3dp": {
+            "type": "announcement-bar",
+            "settings": {
+                "animation_type": "horizontal",
+                "animation_speed": 10,
+                "animation_direction": "left",
+                "background_color": "#000000",
+                "text_color": "#ffffff",
+                "font_size": "1rem",
+                "font_weight": "600",
+                "padding": "10px 1rem"
+            },
+            "blocks": [
+                {
+                    "type": "tile",
+                    "settings": {
+                        "text": "Welcome to our store!",
+                        "link": "#",
+                        "background_color": "#000000",
+                        "dismissible": false,
+                        "text_color": "#ffffff",
+                        "padding": "0 1rem",
+                        "font_size": "1rem",
+                        "font_weight": "600"
+                    }
+                },
+                {
+                    "type": "tile",
+                    "settings": {
+                        "text": "test ",
+                        "link": "#",
+                        "background_color": "#000000",
+                        "dismissible": false,
+                        "text_color": "#ffffff",
+                        "padding": "0 1rem",
+                        "font_size": "1rem",
+                        "font_weight": "600"
+                    }
+                },
+                {
+                    "type": "tile",
+                    "settings": {
+                        "text": "xyz",
+                        "link": "#",
+                        "background_color": "#000000",
+                        "dismissible": false,
+                        "text_color": "#ffffff",
+                        "padding": "0 1rem",
+                        "font_size": "1rem",
+                        "font_weight": "600"
+                    }
+                }
+            ]
+        }
+    },
+    "order": [
+        "testimonial-slider-md3cn9wj-0zbxr1ijh5yl",
+        "featured-collection-md3cn9wj-jeeej4nbq8p",
+        "newsletter-md3cn9wj-9y0fh22cpao",
+        "recently-viewed-md3cn9wj-s8uys20su",
+        "video-banner-md3cn9wj-ze1s7fhbu1h",
+        "promo-grid-md3cn9wj-vxy5h42qc0h",
+        "popup-md3cn9wj-qaiv35yfuw9",
+        "blog-posts-md3crsfz-9ktuzc19nbd",
+        "hero-banner-md3cn9wj-whn2g2bwkv",
+        "featured-product-md3cn9wj-24wzp1irvyh",
+        "announcement-bar-md3csczw-l3dgrtez3dp"
+    ]
+}

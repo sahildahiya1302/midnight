@@ -1,0 +1,146 @@
+{
+    "sections": {
+        "hero-banner-mbxple3b-c1zw8gk5x7": {
+            "type": "hero-banner",
+            "settings": {
+                "heading": "Contact Us  test ",
+                "subheading": "We'd love to hear from you",
+                "background_image": "uploads/banners/contact.jpg"
+            },
+            "blocks": []
+        },
+        "contact-form-mbxple3b-w05398a0hy": {
+            "type": "contact-form",
+            "settings": [],
+            "blocks": []
+        },
+        "store-location-mbxple3b-6944kruskp4": {
+            "type": "store-location",
+            "settings": [],
+            "blocks": []
+        },
+        "newsletter-mbxple3b-nph3tvbpryp": {
+            "type": "newsletter",
+            "settings": {
+                "heading": "Subscribe for Updates",
+                "placeholder": "Enter your email"
+            },
+            "blocks": []
+        },
+        "trust-badges-mbxple3b-dbosjmbd8j": {
+            "type": "trust-badges",
+            "settings": [],
+            "blocks": []
+        },
+        "promo-grid-mbxple3b-8cjh2hzb13o": {
+            "type": "promo-grid",
+            "settings": {
+                "heading": "testcode",
+                "subheading": "test okk",
+                "promos": "okay "
+            },
+            "blocks": []
+        },
+        "header-mbxpl3rt-f76r6b0zqc": {
+            "type": "header",
+            "settings": {
+                "logo_image": "",
+                "logo_text": "Your Store",
+                "logo_text_color": "#000000",
+                "logo_font_family": "Arial, sans-serif",
+                "logo_font_size": 24,
+                "logo_width": 120,
+                "logo_alignment": "left",
+                "show_search": true,
+                "search_placeholder": "Search Gifts for your dearest...",
+                "menu_items": [],
+                "header_sticky": false,
+                "background_color": "#ffffff",
+                "text_color": "#000000",
+                "padding_top": 10,
+                "padding_bottom": 10,
+                "margin_top": 0,
+                "margin_bottom": 0,
+                "entry_animation": "none",
+                "animation_delay": 0,
+                "animation_repeat": false,
+                "show_on_desktop": true,
+                "show_on_mobile": true,
+                "pages_visibility": [],
+                "custom_css": "",
+                "custom_id": "",
+                "custom_class": "",
+                "html_above": "",
+                "html_below": ""
+            },
+            "blocks": []
+        },
+        "header-mbxpl959-10yhddkiqapr": {
+            "type": "header",
+            "settings": {
+                "logo_image": "",
+                "logo_text": "Your Store",
+                "logo_text_color": "#000000",
+                "logo_font_family": "Arial, sans-serif",
+                "logo_font_size": 24,
+                "logo_width": 120,
+                "logo_alignment": "left",
+                "show_search": true,
+                "search_placeholder": "Search Gifts for your dearest...",
+                "menu_items": [],
+                "header_sticky": false,
+                "background_color": "#ffffff",
+                "text_color": "#000000",
+                "padding_top": 10,
+                "padding_bottom": 10,
+                "margin_top": 0,
+                "margin_bottom": 0,
+                "entry_animation": "none",
+                "animation_delay": 0,
+                "animation_repeat": false,
+                "show_on_desktop": true,
+                "show_on_mobile": true,
+                "pages_visibility": [],
+                "custom_css": "",
+                "custom_id": "",
+                "custom_class": "",
+                "html_above": "",
+                "html_below": ""
+            },
+            "blocks": []
+        },
+        "promo-grid-mbxpmumi-nxhbtaycz8d": {
+            "type": "promo-grid",
+            "settings": {
+                "heading": "Featured Promotions",
+                "subheading": "",
+                "promos": [
+                    {
+                        "image": "/assets/promo1.jpg",
+                        "title": "Summer Essentials",
+                        "subtext": "Up to 40% off",
+                        "link": "/collections/summer"
+                    },
+                    {
+                        "image": "/assets/promo2.jpg",
+                        "title": "Sterling Rings",
+                        "subtext": "Shop handcrafted designs",
+                        "link": "/collections/rings"
+                    }
+                ]
+            },
+            "blocks": []
+        }
+    },
+    "order": [
+        "hero-banner-mbxple3b-c1zw8gk5x7",
+        "contact-form-mbxple3b-w05398a0hy",
+        "store-location-mbxple3b-6944kruskp4",
+        "newsletter-mbxple3b-nph3tvbpryp",
+        "trust-badges-mbxple3b-dbosjmbd8j",
+        "promo-grid-mbxple3b-8cjh2hzb13o",
+        "header-mbxpl3rt-f76r6b0zqc",
+        "header-mbxpl959-10yhddkiqapr",
+        "promo-grid-mbxpmumi-nxhbtaycz8d"
+    ]
+}

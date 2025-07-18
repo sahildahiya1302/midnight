@@ -1,0 +1,1 @@
+ALTER TABLE pages ADD COLUMN layout JSON NOT NULL DEFAULT ('{}');
