@@ -16,7 +16,7 @@
         <li><a href="/admin/orders/invoices.php">Invoices</a></li>
       </ul>
     </li>
-    <li class="nav-item">Customers
+    <li class="nav-item"><a href="/admin/customers/customers.php">Customers</a>
       <ul class="sub-nav">
         <li><a href="/admin/customers/customers.php">All Customers</a></li>
         <li><a href="/admin/customers/groups.php">Groups & Segments</a></li>
@@ -25,7 +25,7 @@
         <li><a href="/admin/customers/engagement.php">Email/SMS Engagement</a></li>
       </ul>
     </li>
-    <li class="nav-item">Sales & Marketing
+    <li class="nav-item"><a href="/admin/marketing/campaigns.php">Sales & Marketing</a>
       <ul class="sub-nav">
         <li><a href="/admin/marketing/campaigns.php">Ad Campaigns</a></li>
         <li><a href="/admin/marketing/pixels.php">Pixel Integrations</a></li>
@@ -35,7 +35,7 @@
         <li><a href="/admin/discounts/discounts.php">Discount Rules</a></li>
       </ul>
     </li>
-    <li class="nav-item">Content & Pages
+    <li class="nav-item"><a href="/admin/pages/pages.php">Content & Pages</a>
       <ul class="sub-nav">
         <li><a href="/admin/pages/pages.php">Website Pages</a></li>
         <li><a href="/admin/blogs.php">Blog Articles</a></li>
@@ -44,7 +44,7 @@
         <li><a href="/admin/pages/media.php">Media Manager</a></li>
       </ul>
     </li>
-    <li class="nav-item">Themes
+    <li class="nav-item"><a href="/admin/themes/themes.php">Themes</a>
       <ul class="sub-nav">
         <li><a href="/admin/themes/theme-editor.php" target="_blank">Theme Editor</a></li>
         <li><a href="/admin/themes/code-editor.php" target="_blank">Code Editor</a></li>
@@ -53,7 +53,7 @@
         <li><a href="/admin/editor/theme-settings.php">Theme Settings</a></li>
       </ul>
     </li>
-    <li class="nav-item">Reports
+    <li class="nav-item"><a href="/admin/reports/reports.php">Reports</a>
       <ul class="sub-nav">
         <li><a href="/admin/reports/sales.php">Sales Performance</a></li>
         <li><a href="/admin/reports/funnel.php">Conversion Funnel</a></li>
@@ -63,7 +63,7 @@
         <li><a href="/admin/reports/abandoned.php">Abandoned Cart Report</a></li>
       </ul>
     </li>
-    <li class="nav-item">Settings & Apps
+    <li class="nav-item"><a href="/admin/settings/settings.php">Settings & Apps</a>
       <ul class="sub-nav">
         <li><a href="/admin/settings/settings.php">Store Settings</a></li>
         <li><a href="/admin/settings/integrations.php">Integrations & APIs</a></li>

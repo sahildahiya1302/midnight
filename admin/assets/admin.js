@@ -1,13 +1,18 @@
-document.addEventListener('DOMContentLoaded', function () {
+document.addEventListener('DOMContentLoaded', () => {
   const navItems = document.querySelectorAll('.nav-item');
 
   navItems.forEach(item => {
-    item.addEventListener('click', function (e) {
-      // Prevent link clicks from toggling sub-nav
-      if (e.target.tagName.toLowerCase() === 'a') {
-        return;
-      }
-      this.classList.toggle('expanded');
+    const link = item.querySelector(':scope > a');
+
+    if (link) {
+      link.addEventListener('click', () => {
+        item.classList.toggle('expanded');
+      });
+    }
+
+    item.addEventListener('click', e => {
+      if (link && e.target === link) return;
+      item.classList.toggle('expanded');
     });
   });
 });
