@@ -321,6 +321,13 @@ body.theme-editor {
   cursor: move;
   border-left: 3px solid transparent;
 }
+.section-item .item-name,
+.block-item .item-name {
+  max-width: 140px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
 .blocks-toggle {
   cursor: pointer;
   font-size: 12px;
@@ -365,6 +372,11 @@ body.theme-editor {
   color: #9CA3AF;
   cursor: pointer;
   font-size: 16px;
+  width: 20px;
+  height: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .section-item .actions button:hover {
@@ -409,6 +421,11 @@ body.theme-editor {
   color: #9CA3AF;
   cursor: pointer;
   font-size: 14px;
+  width: 18px;
+  height: 18px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .block-item .actions button:hover {

@@ -102,6 +102,7 @@ foreach (glob($sectionsDir . "/*.schema.json") as $schemaFile) {
 <script>
     let selectedSectionIndex = null;
     let layoutDirty = false;
+  const sectionSchemas = <?php echo json_encode($sectionSchemas); ?>;
   const pageSelect = document.getElementById('page-select');
   const pageTypeLabel = document.getElementById('page-type-label');
   const sectionList = document.getElementById('section-list');
@@ -157,6 +158,19 @@ let fileSlug = page;
       alert('Invalid layout format received');
       currentLayout = [];
     }
+    // Ensure preset blocks exist for sections that define them
+    currentLayout.forEach(sec => {
+      const schema = sectionSchemas[sec.type];
+      if (!schema) return;
+      if (!Array.isArray(sec.blocks)) sec.blocks = [];
+      if (sec.blocks.length === 0 && Array.isArray(schema.blocks)) {
+        sec.blocks = schema.blocks.map(b => {
+          const bs = {};
+          (b.settings || []).forEach(s => { bs[s.id] = s.default ?? ''; });
+          return { type: b.type, settings: bs, visible: true };
+        });
+      }
+    });
     currentPage = page; // Move this before updatePreview
     pageTypeLabel.textContent = page.charAt(0).toUpperCase() + page.slice(1);
     renderSections();
@@ -188,6 +202,7 @@ let fileSlug = page;
 
 
     const nameSpan = document.createElement('span');
+    nameSpan.className = 'item-name';
     nameSpan.textContent = section.type;
     li.appendChild(nameSpan);
 
@@ -221,21 +236,25 @@ let fileSlug = page;
     let toggleBtn = null;
     let bUl = null;
     if (!Array.isArray(section.blocks)) section.blocks = [];
+    const hasBlockSchema = sectionSchemas[section.type]?.blocks?.length;
+    if (hasBlockSchema) {
+      toggleBtn = document.createElement('span');
+      toggleBtn.className = 'blocks-toggle';
+      toggleBtn.textContent = '▸';
+      li.insertBefore(toggleBtn, li.firstChild);
+      bUl = document.createElement('ul');
+      bUl.className = 'block-list';
+      bUl.style.display = 'none';
+    }
 
-    toggleBtn = document.createElement('span');
-    toggleBtn.className = 'blocks-toggle';
-    toggleBtn.textContent = '▸';
-    li.insertBefore(toggleBtn, li.firstChild);
-    bUl = document.createElement('ul');
-    bUl.className = 'block-list';
-    bUl.style.display = 'none';
-
+    if (hasBlockSchema) {
       const buildBlockItem = (block, bIndex) => {
         const bi = document.createElement('li');
         bi.className = 'block-item';
 
         const labelText = block.settings.title || block.settings.text || `Tile ${bIndex + 1}`;
         const nameSpan = document.createElement('span');
+        nameSpan.className = 'item-name';
         nameSpan.textContent = section.type;
         const labelSpan = document.createElement('span');
         labelSpan.className = 'block-label';
@@ -322,8 +341,9 @@ let fileSlug = page;
           li.classList.remove('blocks-open');
         }
       });
+    }
 
-      li.appendChild(bUl);
+    if (bUl) li.appendChild(bUl);
 
     li.addEventListener('click', () => {
       sectionList.style.display = 'none';
