@@ -375,14 +375,16 @@ let fileSlug = page;
   function buildAddLine(pos, group) {
     const li = document.createElement('li');
     li.className = 'add-section-line';
+    li.dataset.index = pos;
+    li.dataset.group = group;
     const icon = document.createElement('span');
     icon.className = 'plus-icon';
     icon.textContent = '+';
     li.appendChild(icon);
     li.addEventListener('click', e => {
       e.stopPropagation();
-      addTargetIndex = pos;
-      addTargetGroup = group;
+      addTargetIndex = parseInt(li.dataset.index, 10);
+      addTargetGroup = li.dataset.group;
       modal.style.display = 'flex';
       sectionSearch.value = '';
       filterCards('');
@@ -497,6 +499,7 @@ let fileSlug = page;
     selectedSectionIndex = index;
     const section = currentLayout[index];
     if (!section) return;
+    scrollToSection(index);
     let form = document.getElementById("customizer-form");
     let customizer = document.getElementById('section-customizer');
     if (!customizer) {
@@ -752,6 +755,7 @@ let fileSlug = page;
   async function openCustomizerForBlock(sectionIndex, blockIndex) {
     const section = currentLayout[sectionIndex];
     if (!section || !section.blocks || !section.blocks[blockIndex]) return;
+    scrollToSection(sectionIndex);
     const block = section.blocks[blockIndex];
     const form = document.getElementById('customizer-form');
     if (!form) return;
@@ -963,16 +967,17 @@ let fileSlug = page;
   function bindPreviewClicks() {
     try {
       const doc = previewFrame.contentWindow.document;
-      doc.querySelectorAll('section[id]').forEach(el => {
-        el.addEventListener('click', () => {
-          const idx = currentLayout.findIndex(s => (s.settings?.custom_id || s.id) === el.id);
-          if (idx !== -1) {
+      currentLayout.forEach((sec, idx) => {
+        const id = sec.settings?.custom_id || sec.id;
+        const el = doc.getElementById(id);
+        if (el) {
+          el.addEventListener('click', () => {
             sectionList.style.display = 'none';
             selectedSectionIndex = idx;
             renderSections();
             showCustomizer(idx);
-          }
-        });
+          });
+        }
       });
     } catch (e) {}
   }

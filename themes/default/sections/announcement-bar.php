@@ -59,6 +59,7 @@ $padding = $settings['padding'] ?? '10px 1rem';
 
 $animationDuration = $animationSpeed . 's';
 $animationClass = 'announcement-animation-' . uniqid();
+$customId = $settings['custom_id'] ?? $id;
 
 if (!function_exists('escape_html')) {
     function escape_html($str) {
@@ -146,7 +147,7 @@ if (!function_exists('escape_html')) {
 <?php endif; ?>
 </style>
 
-<section id="<?= $animationClass ?>" role="region" aria-label="Announcement Bar">
+<section id="<?= htmlspecialchars($customId) ?>" class="<?= $animationClass ?>" role="region" aria-label="Announcement Bar">
   <div class="announcement-list">
     <?php foreach ($tiles as $tile): ?>
       <?php
