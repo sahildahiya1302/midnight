@@ -66,10 +66,16 @@ try {
         if ($offset > 0) $sql .= " OFFSET $offset";
     }
 
+    // Get total count for pagination
+    $countSql = "SELECT COUNT(DISTINCT p.id) FROM products p $joins $where";
+    $countStmt = db()->prepare($countSql);
+    $countStmt->execute($params);
+    $total = (int)$countStmt->fetchColumn();
+
     $stmt = db()->prepare($sql);
     $stmt->execute($params);
     $products = $stmt->fetchAll(PDO::FETCH_ASSOC);
-    echo json_encode(['success' => true, 'products' => $products]);
+    echo json_encode(['success' => true, 'products' => $products, 'total' => $total]);
 } catch (Throwable $e) {
     echo json_encode(['success' => false, 'message' => 'Error loading products: ' . $e->getMessage()]);
 }

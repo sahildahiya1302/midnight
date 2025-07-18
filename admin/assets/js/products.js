@@ -1,6 +1,6 @@
 document.addEventListener('DOMContentLoaded', function () {
   if (document.getElementById('productTable')) {
-    loadProductTable();
+    initProductPage();
   }
 
   if (document.getElementById('csvFile')) {
@@ -12,11 +12,63 @@ document.addEventListener('DOMContentLoaded', function () {
   }
 });
 
+let currentPage = 1;
+let perPage = 10;
+
+function initProductPage() {
+  const form = document.getElementById('product-filter');
+  const select = document.getElementById('perPage');
+  if (select) perPage = parseInt(select.value, 10);
+  loadProductTable();
+  form.addEventListener('submit', function (e) {
+    e.preventDefault();
+    currentPage = 1;
+    loadProductTable();
+  });
+  if (select) {
+    select.addEventListener('change', function () {
+      perPage = parseInt(this.value, 10);
+      currentPage = 1;
+      loadProductTable();
+    });
+  }
+}
+
+function getFilters() {
+  const data = new FormData(document.getElementById('product-filter'));
+  const filters = {};
+  data.forEach((v, k) => { if (v) filters[k] = v; });
+  filters.limit = perPage;
+  filters.offset = (currentPage - 1) * perPage;
+  return filters;
+}
+
+function renderPagination(total) {
+  const pagEl = document.getElementById('productPagination');
+  const pages = Math.ceil(total / perPage) || 1;
+  let html = '<ul class="pagination">';
+  for (let i = 1; i <= pages; i++) {
+    html += `<li class="page-item ${i === currentPage ? 'active' : ''}">` +
+            `<a class="page-link" href="#" data-page="${i}">${i}</a></li>`;
+  }
+  html += '</ul>';
+  pagEl.innerHTML = html;
+  pagEl.querySelectorAll('a').forEach(a => {
+    a.addEventListener('click', e => {
+      e.preventDefault();
+      currentPage = parseInt(a.dataset.page, 10);
+      loadProductTable();
+    });
+  });
+}
+
 // ------------------------------
 // 1. Load Products Table
 // ------------------------------
-async function loadProductTable(filters = {}) {
+async function loadProductTable() {
   const table = document.getElementById('productTable');
+  const countEl = document.getElementById('productCount');
+  const filters = getFilters();
 
   try {
     const params = new URLSearchParams(filters);
@@ -49,6 +101,11 @@ async function loadProductTable(filters = {}) {
 
     html += '</tbody></table>';
     table.innerHTML = html;
+
+    const start = filters.offset + 1;
+    const end = filters.offset + json.products.length;
+    countEl.textContent = `Showing ${start}-${end} of ${json.total}`;
+    renderPagination(json.total);
   } catch (err) {
     console.error('❌ Error loading product list:', err);
     table.innerHTML = '<p class="text-danger">Server error while loading products.</p>';
@@ -225,8 +282,10 @@ async function openEditProductModal(id) {
 // ------------------------------
 // 1. Load Products Table
 // ------------------------------
-async function loadProductTable(filters = {}) {
+async function loadProductTable() {
   const table = document.getElementById('productTable');
+  const countEl = document.getElementById('productCount');
+  const filters = getFilters();
 
   try {
     const params = new URLSearchParams(filters);
@@ -259,6 +318,11 @@ async function loadProductTable(filters = {}) {
 
     html += '</tbody></table>';
     table.innerHTML = html;
+
+    const start = filters.offset + 1;
+    const end = filters.offset + json.products.length;
+    countEl.textContent = `Showing ${start}-${end} of ${json.total}`;
+    renderPagination(json.total);
   } catch (err) {
     console.error('❌ Error loading product list:', err);
     table.innerHTML = '<p class="text-danger">Server error while loading products.</p>';
