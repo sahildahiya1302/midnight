@@ -98,20 +98,20 @@ async function loadProductTable() {
     }
 
     let html = `<table class="table table-bordered align-middle"><thead>
-      <tr><th>Title</th><th>Type</th><th>Variants</th><th>Tags</th><th>Price</th><th>Actions</th></tr>
+      <tr><th>Image</th><th>Title</th><th>Type</th><th>Variants</th><th>Price</th><th>Actions</th></tr>
     </thead><tbody>`;
 
     for (const p of json.products) {
       const priceRange = await getPriceRange(p.id);
       html += `<tr>
+        <td>${p.image_url ? `<img src="${p.image_url}" alt="${p.title}" style="width:40px;height:40px;object-fit:cover;border-radius:4px">` : ''}</td>
         <td>${p.title}</td>
         <td>${p.type}</td>
         <td>${p.variant_count}</td>
-        <td>${p.tags || ''}</td>
         <td>${priceRange}</td>
-        <td>
-          <button class="btn btn-sm btn-primary" onclick="openEditProductModal(${p.id})">Edit</button>
-          <button class="btn btn-sm btn-danger" onclick="deleteProduct(${p.id})">Delete</button>
+        <td class="text-nowrap">
+          <button class="btn btn-link p-0 me-2" onclick="openEditProductModal(${p.id})"><i class="bi bi-pencil-square"></i></button>
+          <button class="btn btn-link p-0 text-danger" onclick="deleteProduct(${p.id})"><i class="bi bi-trash"></i></button>
         </td>
       </tr>`;
     }
@@ -315,20 +315,20 @@ async function loadProductTable() {
     }
 
     let html = `<table class="table table-bordered align-middle"><thead>
-      <tr><th>Title</th><th>Type</th><th>Variants</th><th>Tags</th><th>Price</th><th>Actions</th></tr>
+      <tr><th>Image</th><th>Title</th><th>Type</th><th>Variants</th><th>Price</th><th>Actions</th></tr>
     </thead><tbody>`;
 
     for (const p of json.products) {
       const priceRange = await getPriceRange(p.id);
       html += `<tr>
+        <td>${p.image_url ? `<img src="${p.image_url}" alt="${p.title}" style="width:40px;height:40px;object-fit:cover;border-radius:4px">` : ''}</td>
         <td>${p.title}</td>
         <td>${p.type}</td>
         <td>${p.variant_count}</td>
-        <td>${p.tags || ''}</td>
         <td>${priceRange}</td>
-        <td>
-          <button class="btn btn-sm btn-primary" onclick="openEditProductModal(${p.id})">Edit</button>
-          <button class="btn btn-sm btn-danger" onclick="deleteProduct(${p.id})">Delete</button>
+        <td class="text-nowrap">
+          <button class="btn btn-link p-0 me-2" onclick="openEditProductModal(${p.id})"><i class="bi bi-pencil-square"></i></button>
+          <button class="btn btn-link p-0 text-danger" onclick="deleteProduct(${p.id})"><i class="bi bi-trash"></i></button>
         </td>
       </tr>`;
     }

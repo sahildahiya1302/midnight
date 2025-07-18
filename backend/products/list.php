@@ -57,7 +57,9 @@ try {
     if ($sort === 'price_asc') $order = 'min_price ASC';
     elseif ($sort === 'price_desc') $order = 'min_price DESC';
 
-    $sql = "SELECT p.*, MIN(v.price) AS min_price, MAX(v.price) AS max_price,
+    $sql = "SELECT p.*,
+            (SELECT image_url FROM product_variants WHERE product_id = p.id AND image_url IS NOT NULL AND image_url != '' ORDER BY id ASC LIMIT 1) AS image_url,
+            MIN(v.price) AS min_price, MAX(v.price) AS max_price,
             (SELECT COUNT(*) FROM product_variants WHERE product_id = p.id) AS variant_count
             FROM products p LEFT JOIN product_variants v ON v.product_id = p.id
             $joins $where GROUP BY p.id ORDER BY $order";

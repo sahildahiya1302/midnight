@@ -140,9 +140,9 @@ function renderCollectionsTable() {
       <td>${escapeHtml(c.slug)}</td>
       <td>${c.rule_based ? 'Rule-Based' : 'Manual'}</td>
       <td>${c.product_count}</td>
-      <td>
-        <button class="btn btn-sm btn-primary" onclick="openEditCollection(${c.id})">Edit</button>
-        <button class="btn btn-sm btn-danger" onclick="deleteCollection(${c.id})">Delete</button>
+      <td class="text-nowrap">
+        <button class="btn btn-link p-0 me-2" onclick="openEditCollection(${c.id})"><i class="bi bi-pencil-square"></i></button>
+        <button class="btn btn-link p-0 text-danger" onclick="deleteCollection(${c.id})"><i class="bi bi-trash"></i></button>
       </td>
     </tr>`;
   }
