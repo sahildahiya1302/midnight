@@ -156,6 +156,17 @@ body, html {
   user-select: none;
 }
 
+.nav-item > a {
+  color: white;
+  text-decoration: none;
+  display: block;
+  padding: 10px 20px;
+}
+
+.nav-item > a:hover {
+  background-color: #34495e;
+}
+
 .nav-item:hover {
   background-color: #34495e;
 }

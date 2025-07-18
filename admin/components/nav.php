@@ -1,23 +1,15 @@
 <div class="sidebar">
   <ul class="nav-group">
-    <li class="nav-item">Dashboard
+    <li class="nav-item"><a href="/admin/dashboard/dashboard.php">Dashboard</a></li>
+    <li class="nav-item"><a href="/admin/products/products.php">Products</a>
       <ul class="sub-nav">
-        <li><a href="/admin/dashboard/dashboard.php">Store Overview</a></li>
-      </ul>
-    </li>
-    <li class="nav-item">Products
-      <ul class="sub-nav">
-        <li><a href="/admin/products/products.php">All Products</a></li>
-        <li><a href="/admin/products/collections.php">Categories / Collections</a></li>
-        <li><a href="/admin/products/sets.php">Product Sets</a></li>
+        <li><a href="/admin/products/collections.php">Collections</a></li>
         <li><a href="/admin/products/inventory.php">Inventory</a></li>
         <li><a href="/admin/products/reviews.php">Reviews</a></li>
-        <li><a href="/admin/products/import_export.php">Import / Export</a></li>
       </ul>
     </li>
-    <li class="nav-item">Orders
+    <li class="nav-item"><a href="/admin/orders/orders.php">Orders</a>
       <ul class="sub-nav">
-        <li><a href="/admin/orders/orders.php">All Orders</a></li>
         <li><a href="/admin/orders/returns.php">Returns & Refunds</a></li>
         <li><a href="/admin/orders/payment_status.php">Payment Status</a></li>
         <li><a href="/admin/orders/shipping_tracking.php">Shipping & Tracking</a></li>
