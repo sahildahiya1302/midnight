@@ -388,6 +388,10 @@ body.theme-editor {
   display: flex;
   align-items: center;
 }
+.block-item .block-label {
+  color: #6b7280;
+  margin-left: 4px;
+}
 
 .block-item .actions {
   margin-left: auto;

@@ -220,23 +220,28 @@ let fileSlug = page;
 
     let toggleBtn = null;
     let bUl = null;
-    if (Array.isArray(section.blocks)) {
-      toggleBtn = document.createElement('span');
-      toggleBtn.className = 'blocks-toggle';
-      toggleBtn.textContent = '▸';
-      li.insertBefore(toggleBtn, li.firstChild);
-      bUl = document.createElement('ul');
-      bUl.className = 'block-list';
-      bUl.style.display = 'none';
+    if (!Array.isArray(section.blocks)) section.blocks = [];
+
+    toggleBtn = document.createElement('span');
+    toggleBtn.className = 'blocks-toggle';
+    toggleBtn.textContent = '▸';
+    li.insertBefore(toggleBtn, li.firstChild);
+    bUl = document.createElement('ul');
+    bUl.className = 'block-list';
+    bUl.style.display = 'none';
 
       const buildBlockItem = (block, bIndex) => {
         const bi = document.createElement('li');
         bi.className = 'block-item';
 
-        const labelText = block.settings.title || block.settings.text || `${section.type} - {${bIndex + 1}}`;
+        const labelText = block.settings.title || block.settings.text || `Tile ${bIndex + 1}`;
         const nameSpan = document.createElement('span');
-        nameSpan.textContent = `${section.type} - { ${labelText} }`;
+        nameSpan.textContent = section.type;
+        const labelSpan = document.createElement('span');
+        labelSpan.className = 'block-label';
+        labelSpan.textContent = ` - ${labelText}`;
         bi.appendChild(nameSpan);
+        bi.appendChild(labelSpan);
 
         const actions = document.createElement('span');
         actions.className = 'actions';
@@ -319,7 +324,6 @@ let fileSlug = page;
       });
 
       li.appendChild(bUl);
-    }
 
     li.addEventListener('click', () => {
       sectionList.style.display = 'none';
@@ -362,6 +366,16 @@ let fileSlug = page;
       document.querySelector('.sidebar').appendChild(customizer);
     } else {
       customizer.style.display = 'block';
+    }
+
+    let form = document.getElementById('customizer-form');
+    if (!form) {
+      form = document.createElement('form');
+      form.id = 'customizer-form';
+      form.style.display = 'flex';
+      form.style.flexDirection = 'column';
+      form.style.gap = '10px';
+      customizer.appendChild(form);
     }
 
     let backBtn = document.getElementById('back-to-sections-btn');
