@@ -16,6 +16,8 @@ The admin panel features a visual theme editor for arranging sections and blocks
 Developers can modify template files directly using the lightweight **Code Editor** at
 `/admin/themes/code-editor.php`.
 For a detailed wireframe of the Theme Editor interface, see [docs/theme-editor-wireframe.md](docs/theme-editor-wireframe.md).
+Additional UI/UX plans for managing themes and assets are available in
+[docs/themes-admin-redesign.md](docs/themes-admin-redesign.md).
 
 /themes/
   /default/
