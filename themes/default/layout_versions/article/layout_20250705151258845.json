@@ -1,0 +1,24 @@
+{
+    "sections": {
+        "breadcrumbs-mcqdpqtw-r2wh9u9ex2j": {
+            "type": "breadcrumbs",
+            "settings": [],
+            "blocks": []
+        },
+        "blog-posts-mcqdpqtw-lc89y7zi4h": {
+            "type": "blog-posts",
+            "settings": [],
+            "blocks": []
+        },
+        "newsletter-mcqdpqtw-layvumsq1gf": {
+            "type": "newsletter",
+            "settings": [],
+            "blocks": []
+        }
+    },
+    "order": [
+        "breadcrumbs-mcqdpqtw-r2wh9u9ex2j",
+        "blog-posts-mcqdpqtw-lc89y7zi4h",
+        "newsletter-mcqdpqtw-layvumsq1gf"
+    ]
+}

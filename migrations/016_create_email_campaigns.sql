@@ -1,0 +1,9 @@
+CREATE TABLE IF NOT EXISTS email_campaigns (
+  id INT AUTO_INCREMENT PRIMARY KEY,
+  subject VARCHAR(255) NOT NULL,
+  body_html TEXT NOT NULL,
+  audience_filter_json JSON NOT NULL,
+  scheduled_at DATETIME NULL,
+  status VARCHAR(50) DEFAULT 'scheduled',
+  created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;

@@ -1,0 +1,78 @@
+{
+    "sections": {
+        "product-features-md3dbpjf-uvwwh3d8rdc": {
+            "type": "product-features",
+            "settings": [],
+            "blocks": []
+        },
+        "breadcrumbs-md3dbpjf-ab37u4mvlk5": {
+            "type": "breadcrumbs",
+            "settings": [],
+            "blocks": []
+        },
+        "product-tabs-md3dbpjf-7ko9b082p73": {
+            "type": "product-tabs",
+            "settings": [],
+            "blocks": []
+        },
+        "product-recommendations-md3dbpjf-lamnsdt3s1": {
+            "type": "product-recommendations",
+            "settings": [],
+            "blocks": []
+        },
+        "review-summary-md3dbpjf-7ha2j5q8j1": {
+            "type": "review-summary",
+            "settings": [],
+            "blocks": []
+        },
+        "product-reviews-md3dbpjf-i36xw740qen": {
+            "type": "product-reviews",
+            "settings": [],
+            "blocks": []
+        },
+        "product-grid-md3dbpjf-uz43h54j1rg": {
+            "type": "product-grid",
+            "settings": [],
+            "blocks": []
+        },
+        "sticky-cart-bar-md3dbpjf-atwr5micexu": {
+            "type": "sticky-cart-bar",
+            "settings": [],
+            "blocks": []
+        },
+        "product-reviews-md3dbpjf-ra9fnyez06": {
+            "type": "product-reviews",
+            "settings": [],
+            "blocks": []
+        },
+        "product-grid-md3dbpjf-eolefxagx1": {
+            "type": "product-grid",
+            "settings": [],
+            "blocks": []
+        },
+        "announcement-bar-md3dbpjf-neyj6r3dlm": {
+            "type": "announcement-bar",
+            "settings": [],
+            "blocks": []
+        },
+        "announcement-bar-md3dbpjf-d9vygdm8rdi": {
+            "type": "announcement-bar",
+            "settings": [],
+            "blocks": []
+        }
+    },
+    "order": [
+        "product-features-md3dbpjf-uvwwh3d8rdc",
+        "breadcrumbs-md3dbpjf-ab37u4mvlk5",
+        "product-tabs-md3dbpjf-7ko9b082p73",
+        "product-recommendations-md3dbpjf-lamnsdt3s1",
+        "review-summary-md3dbpjf-7ha2j5q8j1",
+        "product-reviews-md3dbpjf-i36xw740qen",
+        "product-grid-md3dbpjf-uz43h54j1rg",
+        "sticky-cart-bar-md3dbpjf-atwr5micexu",
+        "product-reviews-md3dbpjf-ra9fnyez06",
+        "product-grid-md3dbpjf-eolefxagx1",
+        "announcement-bar-md3dbpjf-neyj6r3dlm",
+        "announcement-bar-md3dbpjf-d9vygdm8rdi"
+    ]
+}
