@@ -314,25 +314,34 @@ body.theme-editor {
 .section-item {
   padding: 12px 16px;
   display: flex;
-  align-items: center;
-  gap: 8px;
+  flex-direction: column;
+  gap: 4px;
   font-weight: 500;
   color: #111827;
   cursor: move;
   border-left: 3px solid transparent;
 }
-.section-item .item-name,
-.block-item .item-name {
+.section-row {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+.section-item .item-name {
   max-width: 140px;
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
 }
 .blocks-toggle {
+  display: inline-block;
+  width: 12px;
   cursor: pointer;
   font-size: 12px;
   margin-right: 4px;
   color: #6b7280;
+}
+.blocks-toggle.placeholder {
+  visibility: hidden;
 }
 
 .te-sidebar ul {
@@ -403,6 +412,10 @@ body.theme-editor {
 .block-item .block-label {
   color: #6b7280;
   margin-left: 4px;
+  max-width: 140px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
 }
 
 .block-item .actions {

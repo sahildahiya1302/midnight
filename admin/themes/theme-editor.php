@@ -200,11 +200,12 @@ let fileSlug = page;
     li.draggable = true;
     li.dataset.index = index;
 
+    const row = document.createElement('div');
+    row.className = 'section-row';
 
     const nameSpan = document.createElement('span');
     nameSpan.className = 'item-name';
     nameSpan.textContent = section.type;
-    li.appendChild(nameSpan);
 
     const actions = document.createElement('span');
     actions.className = 'actions';
@@ -231,7 +232,6 @@ let fileSlug = page;
     });
     actions.appendChild(delBtn);
 
-    li.appendChild(actions);
 
     let toggleBtn = null;
     let bUl = null;
@@ -241,11 +241,18 @@ let fileSlug = page;
       toggleBtn = document.createElement('span');
       toggleBtn.className = 'blocks-toggle';
       toggleBtn.textContent = '▸';
-      li.insertBefore(toggleBtn, li.firstChild);
       bUl = document.createElement('ul');
       bUl.className = 'block-list';
       bUl.style.display = 'none';
+    } else {
+      toggleBtn = document.createElement('span');
+      toggleBtn.className = 'blocks-toggle placeholder';
     }
+
+    row.appendChild(toggleBtn);
+    row.appendChild(nameSpan);
+    row.appendChild(actions);
+    li.appendChild(row);
 
     if (hasBlockSchema) {
       const buildBlockItem = (block, bIndex) => {
@@ -294,6 +301,7 @@ let fileSlug = page;
           e.stopPropagation();
           sectionList.style.display = 'none';
           showCustomizer(index, bIndex);
+          scrollToSection(index);
         });
 
         bi.appendChild(actions);
@@ -317,6 +325,7 @@ let fileSlug = page;
           (bSchema.settings || []).forEach(s => { settings[s.id] = s.default ?? '' });
           if (!Array.isArray(section.blocks)) section.blocks = [];
           section.blocks.splice(pos, 0, {type: bSchema.type, settings, visible: true});
+          section.open = true;
           layoutDirty = true;
           renderSections();
           updatePreview();
@@ -340,7 +349,14 @@ let fileSlug = page;
         } else {
           li.classList.remove('blocks-open');
         }
+        section.open = show;
       });
+    }
+
+    if (section.open && bUl) {
+      bUl.style.display = 'block';
+      toggleBtn.textContent = '▾';
+      li.classList.add('blocks-open');
     }
 
     if (bUl) li.appendChild(bUl);
@@ -350,12 +366,13 @@ let fileSlug = page;
       selectedSectionIndex = index;
       renderSections();
       showCustomizer(index);
+      scrollToSection(index);
     });
 
     return li;
   }
 
-  function buildAddLine(pos) {
+  function buildAddLine(pos, group) {
     const li = document.createElement('li');
     li.className = 'add-section-line';
     const icon = document.createElement('span');
@@ -365,6 +382,7 @@ let fileSlug = page;
     li.addEventListener('click', e => {
       e.stopPropagation();
       addTargetIndex = pos;
+      addTargetGroup = group;
       modal.style.display = 'flex';
       sectionSearch.value = '';
       filterCards('');
@@ -440,12 +458,12 @@ let fileSlug = page;
       const ul = document.createElement('ul');
       ul.className = 'section-group-list';
       arr.forEach((item, idx) => {
-        if (idx === 0) ul.appendChild(buildAddLine(item.index));
+        if (idx === 0) ul.appendChild(buildAddLine(item.index, g));
         if (filter && !item.section.type.toLowerCase().includes(filter)) {
-          return ul.appendChild(buildAddLine(item.index + 1));
+          return ul.appendChild(buildAddLine(item.index + 1, g));
         }
         ul.appendChild(buildSectionItem(item.section, item.index));
-        ul.appendChild(buildAddLine(item.index + 1));
+        ul.appendChild(buildAddLine(item.index + 1, g));
       });
       wrapper.appendChild(ul);
       sectionList.appendChild(wrapper);
@@ -931,6 +949,35 @@ let fileSlug = page;
       addTargetIndex = null;
     });
   });
+
+  function scrollToSection(index) {
+    const sec = currentLayout[index];
+    if (!sec) return;
+    const id = sec.settings?.custom_id || sec.id;
+    try {
+      const el = previewFrame.contentWindow.document.getElementById(id);
+      if (el) el.scrollIntoView({behavior: 'smooth', block: 'start'});
+    } catch (e) {}
+  }
+
+  function bindPreviewClicks() {
+    try {
+      const doc = previewFrame.contentWindow.document;
+      doc.querySelectorAll('section[id]').forEach(el => {
+        el.addEventListener('click', () => {
+          const idx = currentLayout.findIndex(s => (s.settings?.custom_id || s.id) === el.id);
+          if (idx !== -1) {
+            sectionList.style.display = 'none';
+            selectedSectionIndex = idx;
+            renderSections();
+            showCustomizer(idx);
+          }
+        });
+      });
+    } catch (e) {}
+  }
+
+  previewFrame.addEventListener('load', bindPreviewClicks);
 
 
 // Update live preview iframe with session layout override
