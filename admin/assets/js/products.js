@@ -17,19 +17,22 @@ let perPage = 10;
 
 function initProductPage() {
   const form = document.getElementById('product-filter');
-  const select = document.getElementById('perPage');
-  if (select) perPage = parseInt(select.value, 10);
+  const perOpts = document.getElementById('perPageOptions');
   loadProductTable();
   form.addEventListener('submit', function (e) {
     e.preventDefault();
     currentPage = 1;
     loadProductTable();
   });
-  if (select) {
-    select.addEventListener('change', function () {
-      perPage = parseInt(this.value, 10);
-      currentPage = 1;
-      loadProductTable();
+  if (perOpts) {
+    perOpts.querySelectorAll('.per-page-option').forEach(btn => {
+      btn.addEventListener('click', () => {
+        perOpts.querySelectorAll('.per-page-option').forEach(b => b.classList.remove('active'));
+        btn.classList.add('active');
+        perPage = parseInt(btn.dataset.per, 10);
+        currentPage = 1;
+        loadProductTable();
+      });
     });
   }
 }
@@ -46,11 +49,25 @@ function getFilters() {
 function renderPagination(total) {
   const pagEl = document.getElementById('productPagination');
   const pages = Math.ceil(total / perPage) || 1;
-  let html = '<ul class="pagination">';
-  for (let i = 1; i <= pages; i++) {
+  let html = '<ul class="pagination mb-0">';
+
+  const addPage = (i, label = i) => {
     html += `<li class="page-item ${i === currentPage ? 'active' : ''}">` +
-            `<a class="page-link" href="#" data-page="${i}">${i}</a></li>`;
+            `<a class="page-link" href="#" data-page="${i}">${label}</a></li>`;
+  };
+
+  if (pages <= 7) {
+    for (let i = 1; i <= pages; i++) addPage(i);
+  } else {
+    addPage(1);
+    let start = Math.max(2, currentPage - 1);
+    let end = Math.min(pages - 1, currentPage + 1);
+    if (start > 2) html += '<li class="page-item disabled"><span class="page-link">&hellip;</span></li>';
+    for (let i = start; i <= end; i++) addPage(i);
+    if (end < pages - 1) html += '<li class="page-item disabled"><span class="page-link">&hellip;</span></li>';
+    addPage(pages);
   }
+
   html += '</ul>';
   pagEl.innerHTML = html;
   pagEl.querySelectorAll('a').forEach(a => {

@@ -61,21 +61,21 @@ $cache_bust = filemtime(__DIR__ . '/../../admin/assets/js/products.js');
       <input type="number" name="max_price" class="form-control" step="0.01" placeholder="Max Price">
     </div>
     <div class="col-12">
-      <select name="limit" id="perPage" class="form-select">
-        <option value="10">10</option>
-        <option value="25">25</option>
-        <option value="50">50</option>
-        <option value="100">100</option>
-      </select>
-    </div>
-    <div class="col-12">
       <button type="submit" class="btn btn-outline-primary">Filter</button>
     </div>
   </form>
 
   <!-- Product Table -->
   <div id="productTable" class="table-responsive"></div>
-  <div id="productCount" class="text-muted mb-3"></div>
+  <div class="d-flex justify-content-between align-items-center mb-3">
+    <div id="productCount" class="text-muted"></div>
+    <div id="perPageOptions" class="btn-group btn-group-sm" role="group">
+      <button type="button" class="btn btn-link per-page-option active" data-per="10">10</button>
+      <button type="button" class="btn btn-link per-page-option" data-per="25">25</button>
+      <button type="button" class="btn btn-link per-page-option" data-per="50">50</button>
+      <button type="button" class="btn btn-link per-page-option" data-per="100">100</button>
+    </div>
+  </div>
   <nav id="productPagination" class="mt-2"></nav>
 </div>
 
