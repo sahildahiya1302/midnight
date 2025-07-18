@@ -1,0 +1,19 @@
+{
+  "name": "Search Results",
+  "settings": [
+    {
+      "type": "text",
+      "id": "heading_prefix",
+      "label": "Heading Prefix",
+      "default": "Search Results for"
+    },
+    {
+      "type": "range",
+      "id": "max_results",
+      "label": "Maximum Results",
+      "default": 30,
+      "min": 5,
+      "max": 100
+    }
+  ]
+}

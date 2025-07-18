@@ -1,0 +1,7 @@
+{
+  "name": "Divider",
+  "settings": [
+    { "type": "text", "id": "height", "label": "Divider Height", "default": "30px" },
+    { "type": "color", "id": "color", "label": "Divider Color", "default": "#e0e0e0" }
+  ]
+}
