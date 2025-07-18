@@ -92,10 +92,6 @@ foreach (glob($sectionsDir . "/*.schema.json") as $schemaFile) {
       <div id="section-list" aria-live="polite" aria-relevant="additions removals">
         <!-- Sections will be loaded here -->
       </div>
-      <div id="version-history">
-        <h3>Version History</h3>
-        <ul id="version-list"></ul>
-      </div>
     </div>
     <div class="content">
       <h2>Live Preview</h2>
@@ -198,11 +194,18 @@ let fileSlug = page;
     const actions = document.createElement('span');
     actions.className = 'actions';
 
-    const dupBtn = document.createElement('button');
-    dupBtn.textContent = '⧉';
-    dupBtn.title = 'Duplicate';
-    dupBtn.addEventListener('click', e => { e.stopPropagation(); duplicateSection(index); });
-    actions.appendChild(dupBtn);
+    const visBtn = document.createElement('button');
+    const setVisIcon = () => { visBtn.textContent = section.visible === false ? '🙈' : '👁'; };
+    setVisIcon();
+    visBtn.title = 'Toggle visibility';
+    visBtn.addEventListener('click', e => {
+      e.stopPropagation();
+      section.visible = section.visible === false ? true : false;
+      setVisIcon();
+      layoutDirty = true;
+      updatePreview();
+    });
+    actions.appendChild(visBtn);
 
     const delBtn = document.createElement('button');
     delBtn.textContent = '🗑';
@@ -212,21 +215,6 @@ let fileSlug = page;
       if (confirm('Are you sure you want to delete this section?')) deleteSection(index);
     });
     actions.appendChild(delBtn);
-
-    const codeBtn = document.createElement('button');
-    codeBtn.textContent = '</>';
-    codeBtn.title = 'Edit code';
-    codeBtn.addEventListener('click', async e => {
-      e.stopPropagation();
-      const res = await fetch(`/admin/api/get-section-code.php?section=${section.type}`);
-      if (!res.ok) return alert('Failed to load code');
-      const data = await res.json();
-      const updated = prompt('Edit code for ' + section.type, data.code);
-      if (updated !== null) {
-        await fetch('/admin/api/save-section-code.php', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ section: section.type, code: updated }) });
-      }
-    });
-    actions.appendChild(codeBtn);
 
     li.appendChild(actions);
 
@@ -244,11 +232,47 @@ let fileSlug = page;
       const buildBlockItem = (block, bIndex) => {
         const bi = document.createElement('li');
         bi.className = 'block-item';
-        bi.textContent = block.type;
+
+        const labelText = block.settings.title || block.settings.text || `${section.type} - {${bIndex + 1}}`;
+        const nameSpan = document.createElement('span');
+        nameSpan.textContent = `${section.type} - { ${labelText} }`;
+        bi.appendChild(nameSpan);
+
+        const actions = document.createElement('span');
+        actions.className = 'actions';
+
+        const visBtn = document.createElement('button');
+        const setVisIcon = () => { visBtn.textContent = block.visible === false ? '🙈' : '👁'; };
+        setVisIcon();
+        visBtn.title = 'Toggle visibility';
+        visBtn.addEventListener('click', e => {
+          e.stopPropagation();
+          block.visible = block.visible === false ? true : false;
+          setVisIcon();
+          layoutDirty = true;
+          updatePreview();
+        });
+        actions.appendChild(visBtn);
+
+        const delBtn = document.createElement('button');
+        delBtn.textContent = '🗑';
+        delBtn.title = 'Delete';
+        delBtn.addEventListener('click', e => {
+          e.stopPropagation();
+          section.blocks.splice(bIndex, 1);
+          layoutDirty = true;
+          renderSections();
+          updatePreview();
+        });
+        actions.appendChild(delBtn);
+
         bi.addEventListener('click', e => {
           e.stopPropagation();
+          sectionList.style.display = 'none';
           showCustomizer(index, bIndex);
         });
+
+        bi.appendChild(actions);
         return bi;
       };
 
@@ -263,14 +287,12 @@ let fileSlug = page;
           e.stopPropagation();
           const res = await fetch(`/admin/api/get-section-schema.php?section=${section.type}`);
           const schema = await res.json();
-          const types = (schema.blocks || []).map(b => b.type).join(', ');
-          const type = prompt('Block type: ' + types);
-          if (!type) return;
-          const bSchema = (schema.blocks || []).find(b => b.type === type) || {settings:[]};
+          const bSchema = (schema.blocks || [])[0];
+          if (!bSchema) return;
           const settings = {};
           (bSchema.settings || []).forEach(s => { settings[s.id] = s.default ?? '' });
           if (!Array.isArray(section.blocks)) section.blocks = [];
-          section.blocks.splice(pos, 0, {type, settings});
+          section.blocks.splice(pos, 0, {type: bSchema.type, settings, visible: true});
           layoutDirty = true;
           renderSections();
           updatePreview();
@@ -759,8 +781,6 @@ let fileSlug = page;
       layoutDirty = false;
       updatePreview();
 
-      // Save version after successful save
-      await saveLayoutVersion();
 
     } catch (error) {
       console.error('Error while saving:', error);
@@ -768,50 +788,7 @@ let fileSlug = page;
     }
   });
 
-  // Auto-save draft every 30 seconds if layout is dirty
-  setInterval(() => {
-    if (layoutDirty) {
-      saveLayoutVersion(true);
-    }
-  }, 30000);
 
-  // Save layout version function
-  async function saveLayoutVersion(isAutoSave = false) {
-    const layoutObj = { sections: {}, order: [] };
-    currentLayout.forEach(sec => {
-      const id = sec.id || `${sec.type}-${Date.now().toString(36)}-${Math.random().toString(36).slice(2)}`;
-      sec.id = id;
-      layoutObj.sections[id] = { type: sec.type, settings: sec.settings || {}, blocks: sec.blocks || [] };
-      layoutObj.order.push(id);
-    });
-
-    const payload = { page: currentPage, layout: layoutObj };
-
-    if (!isAutoSave) {
-      // Prompt user for version label
-      const label = prompt('Enter version label (optional):');
-      if (label) {
-        payload.version = label.replace(/[^a-zA-Z0-9-_]/g, '_');
-      }
-    } else {
-      // Auto-save version with timestamp
-      payload.version = new Date().toISOString().replace(/[-:.TZ]/g, '');
-    }
-
-    try {
-      let response = await fetch('/admin/api/save-layout-version.php', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(payload)
-      });
-      let result = await response.json();
-      if (!result.success) throw new Error(result.error || 'Failed to save layout version');
-      if (!isAutoSave) alert('Layout version saved: ' + (payload.version || result.version));
-    } catch (error) {
-      console.error('Failed to save layout version:', error);
-      if (!isAutoSave) alert('Failed to save layout version. Please try again.');
-    }
-  }
 
   // Add drag and drop handlers
   function addDragAndDropHandlers() {
@@ -868,7 +845,7 @@ let fileSlug = page;
         (schema.settings || []).forEach(s => { defaultSettings[s.id] = presetSettings[s.id] ?? s.default ?? '' });
         const blocks = (schema.blocks || []).map(b => {
           const bs = {}; (b.settings||[]).forEach(s=>{bs[s.id]=s.default??''});
-          return {type:b.type, settings: bs};
+          return {type:b.type, settings: bs, visible: true};
         });
         let insertIndex = addTargetIndex !== null ? addTargetIndex : currentLayout.length;
         if (insertIndex < 0 || insertIndex > currentLayout.length) insertIndex = currentLayout.length;
@@ -881,7 +858,7 @@ let fileSlug = page;
             if (insertIndex === -1) insertIndex = currentLayout.length;
           }
         }
-        const newSec = { id: uniqueId, type: sectionType, settings: defaultSettings, blocks };
+        const newSec = { id: uniqueId, type: sectionType, settings: defaultSettings, blocks, visible: true };
         currentLayout.splice(insertIndex, 0, newSec);
         renderSections(); layoutDirty = true; updatePreview();
         addTargetIndex = null;
@@ -924,13 +901,20 @@ let fileSlug = page;
 
 // Update live preview iframe with session layout override
 function updatePreview() {
+  const visibleLayout = currentLayout
+    .filter(sec => sec.visible !== false)
+    .map(sec => ({
+      ...sec,
+      blocks: (sec.blocks || []).filter(b => b.visible !== false)
+    }));
+
   // Send current layout to session for preview rendering
   fetch('/admin/api/set-live-preview.php', {
     method: 'POST',
     headers: { 'Content-Type': 'application/json' },
     body: JSON.stringify({
       page: currentPage,
-      layout: currentLayout
+      layout: visibleLayout
     })
   }).then(() => {
     // After storing in session, reload preview iframe

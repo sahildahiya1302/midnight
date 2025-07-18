@@ -385,6 +385,30 @@ body.theme-editor {
   color: #374151;
   cursor: move;
   width: 100%;
+  display: flex;
+  align-items: center;
+}
+
+.block-item .actions {
+  margin-left: auto;
+  display: none;
+  gap: 6px;
+}
+
+.block-item:hover .actions {
+  display: inline-flex;
+}
+
+.block-item .actions button {
+  background: transparent;
+  border: none;
+  color: #9CA3AF;
+  cursor: pointer;
+  font-size: 14px;
+}
+
+.block-item .actions button:hover {
+  color: #374151;
 }
 
 .add-section-line {
@@ -474,26 +498,6 @@ body.theme-editor {
 }
 
 
-/* Version history */
-#version-history {
-  border-top: 1px solid #e5e7eb;
-  padding-top: 15px;
-  margin-top: auto;
-}
-
-#version-list {
-  list-style: none;
-  padding-left: 0;
-  max-height: 160px;
-  overflow-y: auto;
-  font-size: 0.9rem;
-  color: #555;
-}
-
-#version-list li {
-  padding: 6px 8px;
-  border-bottom: 1px solid #f0f0f0;
-}
 
 /* Content area */
 .content {
