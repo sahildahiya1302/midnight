@@ -16,6 +16,6 @@ if (!isset($_SESSION['user_id'])) {
     <link rel="icon" href="/admin/assets/favicon.ico" type="image/x-icon">
 </head>
 <body>
-<div class="container">
+<div class="admin-layout">
 <?php include __DIR__ . '/nav.php'; ?>
 <div class="content">

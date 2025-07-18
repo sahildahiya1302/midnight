@@ -83,7 +83,7 @@ foreach (glob($sectionsDir . "/*.schema.json") as $schemaFile) {
       </div>
     </div>
   </div>
-  <div class="container">
+  <div class="admin-layout">
     <div class="sidebar">
       <h2>Page Sections (<span id="page-type-label"><?php echo htmlspecialchars($pageType); ?></span>)</h2>
       <div class="sidebar-search">
