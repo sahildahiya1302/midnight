@@ -327,6 +327,7 @@ body.theme-editor {
   margin-right: 4px;
   color: #6b7280;
 }
+
 .te-sidebar ul {
   list-style: none;
   padding: 0;
@@ -341,6 +342,11 @@ body.theme-editor {
 .section-item.active {
   background-color: #F3F4F6;
   border-left-color: #3B82F6;
+}
+
+.section-item.blocks-open {
+  flex-direction: column;
+  align-items: stretch;
 }
 
 .section-item .actions {
@@ -369,6 +375,7 @@ body.theme-editor {
   list-style: none;
   padding-left: 24px;
   margin-top: 6px;
+  width: 100%;
 }
 
 .block-item {
@@ -377,6 +384,7 @@ body.theme-editor {
   font-weight: 500;
   color: #374151;
   cursor: move;
+  width: 100%;
 }
 
 .add-section-line {
@@ -393,6 +401,8 @@ body.theme-editor {
   left: 0;
   right: 0;
   border-top: 1px dashed #c0c4c9;
+  opacity: 0;
+  transition: opacity 0.2s;
 }
 
 .add-section-line .plus-icon {
@@ -414,7 +424,9 @@ body.theme-editor {
 }
 
 .section-item:hover + .add-section-line .plus-icon,
-.add-section-line:hover .plus-icon {
+.section-item:hover + .add-section-line::before,
+.add-section-line:hover .plus-icon,
+.add-section-line:hover::before {
   opacity: 1;
 }
 
@@ -432,6 +444,8 @@ body.theme-editor {
   left: 0;
   right: 0;
   border-top: 1px dashed #c0c4c9;
+  opacity: 0;
+  transition: opacity 0.2s;
 }
 
 .add-block-line .plus-icon {
@@ -453,7 +467,9 @@ body.theme-editor {
 }
 
 .block-item:hover + .add-block-line .plus-icon,
-.add-block-line:hover .plus-icon {
+.block-item:hover + .add-block-line::before,
+.add-block-line:hover .plus-icon,
+.add-block-line:hover::before {
   opacity: 1;
 }
 

@@ -190,10 +190,6 @@ let fileSlug = page;
     li.draggable = true;
     li.dataset.index = index;
 
-    const handle = document.createElement('span');
-    handle.textContent = '\u2837';
-    handle.className = 'drag-handle';
-    li.appendChild(handle);
 
     const nameSpan = document.createElement('span');
     nameSpan.textContent = section.type;
@@ -293,6 +289,11 @@ let fileSlug = page;
         const show = bUl.style.display === 'none';
         bUl.style.display = show ? 'block' : 'none';
         toggleBtn.textContent = show ? '▾' : '▸';
+        if (show) {
+          li.classList.add('blocks-open');
+        } else {
+          li.classList.remove('blocks-open');
+        }
       });
 
       li.appendChild(bUl);
