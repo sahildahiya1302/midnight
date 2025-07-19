@@ -13,15 +13,31 @@ if (!isset($_SESSION['user_id'])) {
 
 $pageTitle = 'Themes';
 
+// Recursively copy a directory
+function copy_dir(string $src, string $dest): void
+{
+    if (!is_dir($dest)) {
+        mkdir($dest, 0777, true);
+    }
+    foreach (scandir($src) as $file) {
+        if ($file === '.' || $file === '..') continue;
+        $srcPath = "$src/$file";
+        $destPath = "$dest/$file";
+        if (is_dir($srcPath)) {
+            copy_dir($srcPath, $destPath);
+        } else {
+            copy($srcPath, $destPath);
+        }
+    }
+}
+
 // Handle form submissions for activating or deleting themes
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $action = $_POST['action'] ?? '';
     $themeId = $_POST['theme_id'] ?? null;
 
     if ($action === 'activate' && $themeId) {
-        // Deactivate all themes
         db_query('UPDATE themes SET active = 0');
-        // Activate selected theme
         db_query('UPDATE themes SET active = 1 WHERE id = :id', [':id' => $themeId]);
         $_SESSION['flash_message'] = 'Theme activated successfully.';
     } elseif ($action === 'duplicate' && $themeId) {
@@ -31,6 +47,10 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 ':name' => $theme['name'] . ' Copy',
                 ':settings' => $theme['settings']
             ]);
+            $newId = (int)db()->lastInsertId();
+            $srcDir = __DIR__ . '/../../themes/default';
+            $destDir = __DIR__ . '/../../themes/theme' . $newId;
+            copy_dir($srcDir, $destDir);
             $_SESSION['flash_message'] = 'Theme duplicated successfully.';
         }
     } elseif ($action === 'delete' && $themeId) {
@@ -42,7 +62,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 }
 
 // Fetch all themes
-$themes = db_query('SELECT id, name, created_at FROM themes ORDER BY created_at DESC')->fetchAll();
+$themes = db_query('SELECT id, name, created_at, active FROM themes ORDER BY created_at DESC')->fetchAll();
 if (!$themes) {
     $themes[] = ['id' => 1, 'name' => 'Custom Theme', 'created_at' => date('Y-m-d'), 'active' => 1];
 }
@@ -69,40 +89,59 @@ require __DIR__ . '/../components/header.php';
 <?php endif; ?>
 
 <!-- Themes list -->
-<table>
-    <thead>
-        <tr>
-            <th>Name</th>
-            <th>Created At</th>
-            <th>Actions</th>
-        </tr>
-    </thead>
-    <tbody>
-        <?php foreach ($themes as $theme): ?>
-        <tr>
-            <td><?= htmlspecialchars($theme['name']) ?></td>
-            <td><?= htmlspecialchars($theme['created_at']) ?></td>
-            <td>
-                <form method="post" style="display:inline;">
+<div class="theme-list">
+    <?php foreach ($themes as $theme): ?>
+    <?php
+        $slug = preg_replace('/[^a-z0-9]+/i', '-', strtolower($theme['name']));
+        $screenshot = "/themes/$slug/screenshot.png";
+        if (!file_exists(__DIR__ . "/../../$screenshot")) {
+            $screenshot = "/themes/default/assets/images/hero.jpg";
+        }
+        $mobileShot = $screenshot;
+    ?>
+    <div class="theme-card <?= $theme['active'] ? 'active' : '' ?>">
+        <div class="screenshot">
+            <img src="<?= $screenshot ?>" alt="screenshot" class="desktop">
+            <img src="<?= $mobileShot ?>" alt="mobile" class="mobile">
+            <?php if ($theme['active']): ?>
+              <div class="lighthouse">96 <i class="bi bi-bell"></i></div>
+            <?php endif; ?>
+        </div>
+        <div class="info">
+            <h3><?= htmlspecialchars($theme['name']) ?></h3>
+            <small><?= htmlspecialchars(date('M j, Y', strtotime($theme['created_at']))) ?></small>
+            <div class="actions">
+                <a class="btn" href="/admin/themes/theme-editor.php?theme_id=<?= $theme['id'] ?>&page=index" target="_blank">Customize</a>
+                <?php if (!$theme['active']): ?>
+                <form method="post">
                     <input type="hidden" name="action" value="activate">
                     <input type="hidden" name="theme_id" value="<?= $theme['id'] ?>">
                     <button type="submit">Activate</button>
                 </form>
-                <form method="post" style="display:inline;">
-                    <input type="hidden" name="action" value="duplicate">
-                    <input type="hidden" name="theme_id" value="<?= $theme['id'] ?>">
-                    <button type="submit">Duplicate</button>
-                </form>
-                <form method="post" style="display:inline;" onsubmit="return confirm('Are you sure you want to delete this theme?');">
-                    <input type="hidden" name="action" value="delete">
-                    <input type="hidden" name="theme_id" value="<?= $theme['id'] ?>">
-                    <button type="submit">Delete</button>
-                </form>
-            </td>
-        </tr>
-        <?php endforeach; ?>
-    </tbody>
-</table>
+                <?php else: ?>
+                <button disabled>Activated</button>
+                <?php endif; ?>
+                <div class="menu">
+                    <button class="bi bi-three-dots-vertical" type="button"></button>
+                    <div class="menu-items">
+                        <a href="/admin/themes/code-editor.php?theme_id=<?= $theme['id'] ?>" target="_blank">Edit Code</a>
+                        <form method="post">
+                            <input type="hidden" name="action" value="duplicate">
+                            <input type="hidden" name="theme_id" value="<?= $theme['id'] ?>">
+                            <button type="submit">Duplicate</button>
+                        </form>
+                        <form method="post" onsubmit="return confirm('Delete this theme?');">
+                            <input type="hidden" name="action" value="delete">
+                            <input type="hidden" name="theme_id" value="<?= $theme['id'] ?>">
+                            <button type="submit">Delete</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <?php endforeach; ?>
+</div>
 
 <?php
 require __DIR__ . '/../components/footer.php';
