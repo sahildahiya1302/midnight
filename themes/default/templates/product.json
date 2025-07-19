@@ -4,10 +4,12 @@
     "header": {"type": "header", "settings": {}},
     "breadcrumbs": {"type": "breadcrumbs", "settings": {}},
     "featured_product": {"type": "featured-product", "settings": {"show_price": true,"show_add_to_cart": true}},
+    "product_features": {"type": "product-features", "settings": {"heading":"Why You'll Love It"}},
     "product_tabs": {"type": "product-tabs", "settings": {}},
+    "sticky_cart_bar": {"type": "sticky-cart-bar", "settings": {}},
     "product_recommendations": {"type": "product-recommendations", "settings": {}},
     "product_reviews": {"type": "product-reviews", "settings": {}},
     "footer": {"type": "footer", "settings": {}}
   },
-  "order": ["announcement_bar","header","breadcrumbs","featured_product","product_tabs","product_recommendations","product_reviews","footer"]
+  "order": ["announcement_bar","header","breadcrumbs","featured_product","product_features","product_tabs","sticky_cart_bar","product_recommendations","product_reviews","footer"]
 }

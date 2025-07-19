@@ -2,9 +2,11 @@
   "sections": {
     "announcement_bar": {"type": "announcement-bar", "settings": {}},
     "header": {"type": "header", "settings": {}},
+    "hero": {"type": "hero-banner", "settings": {"heading":"Search","subheading":"Find your style","background_image":"uploads/banners/search.jpg"}},
     "search_results": {"type": "search-results", "settings": {}},
+    "brand_logos": {"type": "brand-logos", "settings": {"heading":"Popular Brands"}},
     "newsletter": {"type": "newsletter", "settings": {}},
     "footer": {"type": "footer", "settings": {}}
   },
-  "order": ["announcement_bar","header","search_results","newsletter","footer"]
+  "order": ["announcement_bar","header","hero","search_results","brand_logos","newsletter","footer"]
 }

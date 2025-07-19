@@ -2,10 +2,14 @@
   "sections": {
     "announcement_bar": {"type": "announcement-bar", "settings": {}, "blocks": []},
     "header": {"type": "header", "settings": {}, "blocks": []},
+    "hero": {
+      "type": "hero-banner",
+      "settings": {"heading":"Article","subheading":"Read more","background_image":"uploads/banners/article.jpg"}
+    },
     "breadcrumbs": {"type": "breadcrumbs", "settings": {}},
     "blog_post": {"type": "blog-posts", "settings": {}},
     "newsletter": {"type": "newsletter", "settings": {}},
     "footer": {"type": "footer", "settings": {}}
   },
-  "order": ["announcement_bar","header","breadcrumbs","blog_post","newsletter","footer"]
+  "order": ["announcement_bar","header","hero","breadcrumbs","blog_post","newsletter","footer"]
 }
