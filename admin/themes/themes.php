@@ -88,39 +88,89 @@ require __DIR__ . '/../components/header.php';
     <?php unset($_SESSION['flash_message']); ?>
 <?php endif; ?>
 
-<!-- Themes list -->
-<div class="theme-list">
-    <?php foreach ($themes as $theme): ?>
-    <?php
-        $slug = preg_replace('/[^a-z0-9]+/i', '-', strtolower($theme['name']));
-        $screenshot = "/themes/$slug/screenshot.png";
-        if (!file_exists(__DIR__ . "/../../$screenshot")) {
-            $screenshot = "/themes/default/assets/images/hero.jpg";
-        }
-        $mobileShot = $screenshot;
-    ?>
-    <div class="theme-card <?= $theme['active'] ? 'active' : '' ?>">
-        <div class="screenshot">
-            <img src="<?= $screenshot ?>" alt="screenshot" class="desktop">
-            <img src="<?= $mobileShot ?>" alt="mobile" class="mobile">
-            <?php if ($theme['active']): ?>
-              <div class="lighthouse">96 <i class="bi bi-bell"></i></div>
-            <?php endif; ?>
+
+<?php
+$activeTheme = null;
+$otherThemes = [];
+foreach ($themes as $t) {
+    if (!empty($t['active'])) {
+        $activeTheme = $t;
+    } else {
+        $otherThemes[] = $t;
+    }
+}
+?>
+
+<?php if ($activeTheme): ?>
+<?php
+    $slug = preg_replace('/[^a-z0-9]+/i', '-', strtolower($activeTheme['name']));
+    $screenshot = "/themes/$slug/desktop_screenshot.jpg";
+    $mobileShot = "/themes/$slug/mobile_screenshot.jpg";
+    if (!file_exists(__DIR__ . "/../../$screenshot")) {
+        $screenshot = "/themes/default/desktop_screenshot.jpg";
+        $mobileShot = "/themes/default/mobile_screenshot.jpg";
+    }
+    $perfPath = __DIR__ . "/../../themes/$slug/performance.json";
+    $score = '';
+    $tips = [];
+    if (file_exists($perfPath)) {
+        $data = json_decode(file_get_contents($perfPath), true);
+        $score = $data['score'] ?? '';
+        $tips = $data['tips'] ?? [];
+    }
+?>
+<div class="active-theme">
+    <h2><?= htmlspecialchars($activeTheme['name']) ?></h2>
+    <div class="performance">
+        <strong>Lighthouse Score: <?= htmlspecialchars($score) ?></strong>
+        <?php if ($tips): ?>
+        <ul class="tips">
+            <?php foreach ($tips as $tip): ?>
+            <li><?= htmlspecialchars($tip) ?></li>
+            <?php endforeach; ?>
+        </ul>
+        <?php endif; ?>
+    </div>
+    <div class="screenshot">
+        <img src="<?= $screenshot ?>" alt="desktop" class="desktop">
+        <img src="<?= $mobileShot ?>" alt="mobile" class="mobile">
+    </div>
+    <div class="actions">
+        <a class="btn" href="/admin/themes/theme-editor.php?theme_id=<?= $activeTheme['id'] ?>&page=index" target="_blank">Customize</a>
+        <button disabled>Activated</button>
+        <div class="menu">
+            <button class="bi bi-three-dots-vertical" type="button"></button>
+            <div class="menu-items">
+                <a href="/admin/themes/code-editor.php?theme_id=<?= $activeTheme['id'] ?>" target="_blank">Edit Code</a>
+                <form method="post">
+                    <input type="hidden" name="action" value="duplicate">
+                    <input type="hidden" name="theme_id" value="<?= $activeTheme['id'] ?>">
+                    <button type="submit">Duplicate</button>
+                </form>
+                <form method="post" onsubmit="return confirm('Delete this theme?');">
+                    <input type="hidden" name="action" value="delete">
+                    <input type="hidden" name="theme_id" value="<?= $activeTheme['id'] ?>">
+                    <button type="submit">Delete</button>
+                </form>
+            </div>
         </div>
+    </div>
+</div>
+<?php endif; ?>
+
+<div class="theme-list">
+<?php foreach ($otherThemes as $theme): ?>
+    <div class="theme-card compact">
         <div class="info">
             <h3><?= htmlspecialchars($theme['name']) ?></h3>
             <small><?= htmlspecialchars(date('M j, Y', strtotime($theme['created_at']))) ?></small>
             <div class="actions">
                 <a class="btn" href="/admin/themes/theme-editor.php?theme_id=<?= $theme['id'] ?>&page=index" target="_blank">Customize</a>
-                <?php if (!$theme['active']): ?>
                 <form method="post">
                     <input type="hidden" name="action" value="activate">
                     <input type="hidden" name="theme_id" value="<?= $theme['id'] ?>">
                     <button type="submit">Activate</button>
                 </form>
-                <?php else: ?>
-                <button disabled>Activated</button>
-                <?php endif; ?>
                 <div class="menu">
                     <button class="bi bi-three-dots-vertical" type="button"></button>
                     <div class="menu-items">
@@ -140,7 +190,7 @@ require __DIR__ . '/../components/header.php';
             </div>
         </div>
     </div>
-    <?php endforeach; ?>
+<?php endforeach; ?>
 </div>
 
 <?php
