@@ -127,32 +127,25 @@ $ogImage = asset('images/logo.png');
 <?php if (!empty($pageBodyStartCode)) echo $pageBodyStartCode; ?>
 
 <?php
-// ✅ Announcement
-if (getSetting('show_announcement_bar', true)) {
-    includeSection('announcement-bar', ['text' => getSetting('announcement_text', 'Welcome!')]);
-}
-
-// ✅ Header
-include dirname(__DIR__) . '/sections/header.php';
+// Sections like announcement bar and header are now defined in each page layout
+// via the theme JSON templates.
 ?>
 
 <!-- ✅ Main page content -->
 <div id="page-content" class="page-content container">
-  <?php if (!empty($content)): ?>
-  <?= $content ?>
-<?php else: ?>
-  <div class="container">
-    <p>No content available. Please check your page layout or theme editor settings.</p>
-  </div>
-<?php endif; ?>
+  <?php $content_to_show = $content ?? ($content_for_layout ?? ''); ?>
+  <?php if (!empty($content_to_show)): ?>
+    <?= $content_to_show ?>
+  <?php else: ?>
+    <div class="container">
+      <p>No content available. Please check your page layout or theme editor settings.</p>
+    </div>
+  <?php endif; ?>
 
 </div>
 
 <?php
-// ✅ Footer
-if (getSetting('show_footer', true)) {
-    include dirname(__DIR__) . '/sections/footer.php';
-}
+// Footer sections are also loaded from the page layout JSON.
 ?>
 
 <?php if (!empty($pageJsCode)): ?>

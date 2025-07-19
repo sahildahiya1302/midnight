@@ -1,5 +1,5 @@
 {
-  "name": " Main Theme",
+  "name": "Custom Theme",
   "settings": [
     { "type": "font", "id": "font_body", "label": "Body Font", "default": "Inter" },
     { "type": "color", "id": "color_primary", "label": "Primary Color", "default": "#c2a47b" },

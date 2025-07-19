@@ -24,6 +24,15 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         // Activate selected theme
         db_query('UPDATE themes SET active = 1 WHERE id = :id', [':id' => $themeId]);
         $_SESSION['flash_message'] = 'Theme activated successfully.';
+    } elseif ($action === 'duplicate' && $themeId) {
+        $theme = db_query('SELECT name, settings FROM themes WHERE id = :id', [':id' => $themeId])->fetch(PDO::FETCH_ASSOC);
+        if ($theme) {
+            db_query('INSERT INTO themes (name, settings) VALUES (:name, :settings)', [
+                ':name' => $theme['name'] . ' Copy',
+                ':settings' => $theme['settings']
+            ]);
+            $_SESSION['flash_message'] = 'Theme duplicated successfully.';
+        }
     } elseif ($action === 'delete' && $themeId) {
         db_query('DELETE FROM themes WHERE id = :id', [':id' => $themeId]);
         $_SESSION['flash_message'] = 'Theme deleted successfully.';
@@ -34,6 +43,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
 // Fetch all themes
 $themes = db_query('SELECT id, name, created_at FROM themes ORDER BY created_at DESC')->fetchAll();
+if (!$themes) {
+    $themes[] = ['id' => 1, 'name' => 'Custom Theme', 'created_at' => date('Y-m-d'), 'active' => 1];
+}
 
 foreach ($themes as &$theme) {
     if (!isset($theme['active'])) {
@@ -46,6 +58,10 @@ require __DIR__ . '/../components/header.php';
 ?>
 
 <h1>Themes</h1>
+<div class="theme-actions">
+    <a href="create-theme.php" class="btn">Create Theme</a>
+    <a href="upload-theme.php" class="btn">Upload Theme</a>
+</div>
 
 <?php if (!empty($_SESSION['flash_message'])): ?>
     <div class="flash-message"><?= htmlspecialchars($_SESSION['flash_message']) ?></div>
@@ -71,6 +87,11 @@ require __DIR__ . '/../components/header.php';
                     <input type="hidden" name="action" value="activate">
                     <input type="hidden" name="theme_id" value="<?= $theme['id'] ?>">
                     <button type="submit">Activate</button>
+                </form>
+                <form method="post" style="display:inline;">
+                    <input type="hidden" name="action" value="duplicate">
+                    <input type="hidden" name="theme_id" value="<?= $theme['id'] ?>">
+                    <button type="submit">Duplicate</button>
                 </form>
                 <form method="post" style="display:inline;" onsubmit="return confirm('Are you sure you want to delete this theme?');">
                     <input type="hidden" name="action" value="delete">

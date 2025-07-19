@@ -1,17 +1,10 @@
-[
-    {
-        "type": "blog-posts",
-        "settings": [],
-        "id": "blog-posts-mbxp30mc-w2gg6kxduph"
-    },
-    {
-        "type": "blog-slider",
-        "settings": [],
-        "id": "blog-slider-mbxp30mc-ypvodbpec7n"
-    },
-    {
-        "type": "newsletter",
-        "settings": [],
-        "id": "newsletter-mbxp30mc-3h49wbgic4s"
-    }
-]
+{
+  "sections": {
+    "announcement_bar": {"type": "announcement-bar", "settings": {}},
+    "header": {"type": "header", "settings": {}},
+    "blog_posts": {"type": "blog-posts", "settings": {}},
+    "newsletter": {"type": "newsletter", "settings": {}},
+    "footer": {"type": "footer", "settings": {}}
+  },
+  "order": ["announcement_bar","header","blog_posts","newsletter","footer"]
+}

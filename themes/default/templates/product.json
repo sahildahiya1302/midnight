@@ -1,78 +1,13 @@
 {
-    "sections": {
-        "product-features-mbwozj08-az8vlrv3ine": {
-            "type": "product-features",
-            "settings": [],
-            "blocks": []
-        },
-        "breadcrumbs-mbwozj08-gpy2ekaiiut": {
-            "type": "breadcrumbs",
-            "settings": [],
-            "blocks": []
-        },
-        "product-tabs-mbwozj08-fdf0eu90l9": {
-            "type": "product-tabs",
-            "settings": [],
-            "blocks": []
-        },
-        "product-recommendations-mbwozj08-2y5l6jywqo": {
-            "type": "product-recommendations",
-            "settings": [],
-            "blocks": []
-        },
-        "review-summary-mbwozj08-ktai8vxlh9": {
-            "type": "review-summary",
-            "settings": [],
-            "blocks": []
-        },
-        "product-reviews-mbwozj08-u5m2xtm11pp": {
-            "type": "product-reviews",
-            "settings": [],
-            "blocks": []
-        },
-        "product-grid-mbwozj08-h1pyxunnxka": {
-            "type": "product-grid",
-            "settings": [],
-            "blocks": []
-        },
-        "sticky-cart-bar-mbwozj08-4l1a5dvm3qk": {
-            "type": "sticky-cart-bar",
-            "settings": [],
-            "blocks": []
-        },
-        "product-reviews-mbwozj08-q0ih3qsdwf8": {
-            "type": "product-reviews",
-            "settings": [],
-            "blocks": []
-        },
-        "product-grid-mbwozj08-raenvsrla2m": {
-            "type": "product-grid",
-            "settings": [],
-            "blocks": []
-        },
-        "announcement-bar-1749933090108": {
-            "type": "announcement-bar",
-            "settings": [],
-            "blocks": []
-        },
-        "announcement-bar-1749933097546": {
-            "type": "announcement-bar",
-            "settings": [],
-            "blocks": []
-        }
-    },
-    "order": [
-        "product-features-mbwozj08-az8vlrv3ine",
-        "breadcrumbs-mbwozj08-gpy2ekaiiut",
-        "product-tabs-mbwozj08-fdf0eu90l9",
-        "product-recommendations-mbwozj08-2y5l6jywqo",
-        "review-summary-mbwozj08-ktai8vxlh9",
-        "product-reviews-mbwozj08-u5m2xtm11pp",
-        "product-grid-mbwozj08-h1pyxunnxka",
-        "sticky-cart-bar-mbwozj08-4l1a5dvm3qk",
-        "product-reviews-mbwozj08-q0ih3qsdwf8",
-        "product-grid-mbwozj08-raenvsrla2m",
-        "announcement-bar-1749933090108",
-        "announcement-bar-1749933097546"
-    ]
+  "sections": {
+    "announcement_bar": {"type": "announcement-bar", "settings": {}},
+    "header": {"type": "header", "settings": {}},
+    "breadcrumbs": {"type": "breadcrumbs", "settings": {}},
+    "featured_product": {"type": "featured-product", "settings": {"show_price": true,"show_add_to_cart": true}},
+    "product_tabs": {"type": "product-tabs", "settings": {}},
+    "product_recommendations": {"type": "product-recommendations", "settings": {}},
+    "product_reviews": {"type": "product-reviews", "settings": {}},
+    "footer": {"type": "footer", "settings": {}}
+  },
+  "order": ["announcement_bar","header","breadcrumbs","featured_product","product_tabs","product_recommendations","product_reviews","footer"]
 }

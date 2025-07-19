@@ -1,39 +1,12 @@
 {
   "sections": {
-    "hero_banner": {
-      "type": "hero-banner",
-      "settings": {
-        "heading": "About Us",
-        "subheading": "Learn more about our story",
-        "background_image": "uploads/banners/about-us.jpg"
-      }
-    },
-    "rich_text": {
-      "type": "rich-text",
-      "settings": {
-        "content": "<p>Our company was founded with the mission to provide quality products and excellent customer service.</p>"
-      }
-    },
-    "image_with_text": {
-      "type": "image-with-text",
-      "settings": {
-        "image": "uploads/images/team.jpg",
-        "heading": "Meet the Team",
-        "text": "Our dedicated team works hard to bring you the best."
-      }
-    },
-    "newsletter": {
-      "type": "newsletter",
-      "settings": {
-        "heading": "Stay Updated",
-        "placeholder": "Enter your email"
-      }
-    }
+    "announcement_bar": {"type": "announcement-bar", "settings": {}, "blocks": []},
+    "header": {"type": "header", "settings": {}, "blocks": []},
+    "hero": {"type": "hero-banner", "settings": {"heading": "About Us","subheading": "Learn our story","background_image": "uploads/banners/about.jpg"}, "blocks": []},
+    "rich_text": {"type": "rich-text", "settings": {"content": "<p>We are committed to delivering quality and value.</p>"}},
+    "image_with_text": {"type": "image-with-text", "settings": {"image": "uploads/images/team.jpg","heading": "Our Team","text": "Passionate people behind the brand."}},
+    "newsletter": {"type": "newsletter", "settings": {"heading": "Stay Updated","placeholder": "Your email"}},
+    "footer": {"type": "footer", "settings": {}, "blocks": []}
   },
-  "order": [
-    "hero_banner",
-    "rich_text",
-    "image_with_text",
-    "newsletter"
-  ]
+  "order": ["announcement_bar","header","hero","rich_text","image_with_text","newsletter","footer"]
 }
