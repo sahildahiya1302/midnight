@@ -11,8 +11,7 @@
   "Buttons": {
     "button_radius": {"label": "Button Radius", "type": "range", "min": 0, "max": 20, "default": 4},
     "button_shadow": {"label": "Enable Shadow", "type": "checkbox", "default": true}
-  }
-,
+  },
   "Header": {
     "logo": {"label": "Logo Image", "type": "image_picker", "default": "/themes/default/assets/images/logo.png"},
     "navigation_style": {"label": "Navigation Style", "type": "select", "options": ["inline","centered","drawer"], "default": "inline"}
@@ -20,5 +19,10 @@
   "Footer": {
     "show_newsletter": {"label": "Show Newsletter Form", "type": "checkbox", "default": true},
     "copyright_text": {"label": "Copyright Text", "type": "text", "default": "© 2025 Midnight Store"}
+  },
+  "SEO & Icons": {
+    "meta_title": {"label": "Default Meta Title", "type": "text", "default": "Midnight Store"},
+    "meta_description": {"label": "Default Meta Description", "type": "text", "default": "Welcome to our store"},
+    "favicon": {"label": "Favicon", "type": "image_picker", "default": "/themes/default/assets/images/favicon.ico"}
   }
 }

@@ -61,6 +61,9 @@ table th { background:var(--hover); }
 .settings-menu ul{list-style:none;padding:0;width:200px;}
 .settings-menu li{margin-bottom:5px;}
 .settings-menu a{text-decoration:none;}
+.settings-menu a.active{font-weight:600;text-decoration:underline;}
+.settings-actions{margin-top:10px;text-align:right;}
+.settings-actions .btn{margin-left:8px;}
 .settings-content{flex:1;}
 .setting-row{margin-bottom:10px;display:flex;align-items:center;gap:10px;}
 .setting-row label{min-width:150px;}

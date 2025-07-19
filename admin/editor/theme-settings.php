@@ -27,7 +27,7 @@ if (!$modal) {
   <aside class="settings-menu">
     <ul>
       <?php foreach ($schema as $group => $fields): ?>
-        <li><a href="#<?= htmlspecialchars($group) ?>"><?= htmlspecialchars($group) ?></a></li>
+        <li><a href="#<?= htmlspecialchars($group) ?>" class="menu-link"><?= htmlspecialchars($group) ?></a></li>
       <?php endforeach; ?>
     </ul>
   </aside>
@@ -54,6 +54,11 @@ if (!$modal) {
       </section>
     <?php endforeach; ?>
   </div>
+  <?php if($modal): ?>
+    <div class="settings-actions">
+      <button id="save-settings" class="btn">Save</button>
+    </div>
+  <?php endif; ?>
 <?php if(!$modal): ?></div><?php endif; ?>
 <script>const CURRENT_THEME_ID = <?= (int)$themeId ?>;</script>
 <script src="/admin/assets/theme-settings.js"></script>
