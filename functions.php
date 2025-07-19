@@ -813,27 +813,6 @@ if (!function_exists('track_event')) {
     }
 }
 
-if (!function_exists('getGlobalSection')) {
-    function getGlobalSection(string $handle): ?array
-    {
-        static $cache = [];
-        if (isset($cache[$handle])) {
-            return $cache[$handle];
-        }
-        $stmt = db_query('SELECT type, section_json FROM global_sections WHERE handle = :h LIMIT 1', [':h' => $handle]);
-        $row = $stmt->fetch();
-        if ($row) {
-            $data = json_decode($row['section_json'], true) ?: [];
-            $cache[$handle] = [
-                'type' => $row['type'],
-                'settings' => $data['settings'] ?? [],
-                'blocks' => $data['blocks'] ?? []
-            ];
-            return $cache[$handle];
-        }
-        return null;
-    }
-}
 
 if (!function_exists('getPostOrderOffers')) {
     function getPostOrderOffers(array $productIds): array
@@ -845,6 +824,41 @@ if (!function_exists('getPostOrderOffers')) {
         $stmt = db()->prepare("SELECT * FROM post_order_offers WHERE product_id IN ($placeholders)");
         $stmt->execute($productIds);
         return $stmt->fetchAll();
+    }
+}
+
+if (!function_exists('fetchPageSpeedInsights')) {
+    function fetchPageSpeedInsights(string $url, string $strategy = 'mobile'): ?array
+    {
+        $query = http_build_query([
+            'url' => $url,
+            'strategy' => $strategy,
+            'category' => 'performance'
+        ]);
+        $apiUrl = 'https://www.googleapis.com/pagespeedonline/v5/runPagespeed?' . $query;
+        $context = stream_context_create(['http' => ['timeout' => 15]]);
+        $json = @file_get_contents($apiUrl, false, $context);
+        if (!$json) {
+            return null;
+        }
+        $data = json_decode($json, true);
+        if (!$data || !isset($data['lighthouseResult'])) {
+            return null;
+        }
+        $score = round(($data['lighthouseResult']['categories']['performance']['score'] ?? 0) * 100);
+        $screenshot = $data['lighthouseResult']['audits']['final-screenshot']['details']['data'] ?? '';
+        $tips = [];
+        foreach ($data['lighthouseResult']['audits'] as $audit) {
+            if (($audit['score'] ?? 1) < 0.9 && isset($audit['title'])) {
+                $tips[] = $audit['title'];
+                if (count($tips) >= 3) break;
+            }
+        }
+        return [
+            'score' => $score,
+            'screenshot' => $screenshot,
+            'tips' => $tips
+        ];
     }
 }
 

@@ -196,6 +196,23 @@ body.theme-editor {
   font-size: 14px;
 }
 
+.settings-link {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 32px;
+  height: 32px;
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  background: white;
+  color: var(--text);
+  text-decoration: none;
+  font-size: 18px;
+}
+.settings-link:hover {
+  background: var(--hover);
+}
+
 .device-toggle {
   display: flex;
   border: 1px solid var(--border);

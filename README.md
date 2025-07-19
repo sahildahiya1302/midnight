@@ -176,7 +176,6 @@ Page layouts are stored in `themes/default/templates/*.json`. Each page uses a s
     load-layout.php
     save-settings.php
     get-schema.php
-    upload-assets.php
     upload-image.php
   /search/
     index.php
@@ -240,6 +239,7 @@ This layout mirrors a minimal Shopify-style theme system with a corresponding ad
 - Added cookie consent banner and localStorage tracking for GDPR compliance.
 - Reorganized the admin navigation with new Sales & Marketing and Content & Pages sections.
 - Captures UTM campaign parameters into session and stores them on orders (migration `021_add_utm_columns_to_orders.sql`).
+- Theme manager now fetches Lighthouse performance data dynamically using the PageSpeed Insights API.
 
 ## Database Migrations
 Run the SQL files in the `migrations/` directory in order to set up or update the database schema. Recent migrations include `005_extend_product_sets.sql` for product sets, `006_extend_collections.sql` for collection metadata, and `007_create_collection_rules.sql` for smart collection rules.
@@ -247,14 +247,10 @@ Run the SQL files in the `migrations/` directory in order to set up or update th
 `011_add_custom_code_to_pages.sql` adds head/body/script fields for injecting code per page.
 `012_create_section_presets.sql` defines a table for saved section presets.
 `013_create_page_templates.sql` defines a table for reusable page templates.
-`017_create_global_sections.sql` stores shared sections used across pages.
-`018_create_post_order_offers.sql` adds tables for checkout upsell products.
-`019_extend_global_sections.sql` adds a `used_on_pages` column to track where each global section is used.
+-`018_create_post_order_offers.sql` adds tables for checkout upsell products.
 - Implemented email logging and behavior event tracking with new API (`api/events.php`) and migrations for `email_logs`, `user_events`, and `email_campaigns`.
-- Added global sections system allowing shared content blocks across pages (`global_sections` table).
 - Checkout success page now reads settings from `checkout_success.json` and supports upsell products.
 - Added activity logs for admin actions with new `activity_logs` table and log viewer page.
-- Added admin pages for managing checkout success content and editing global section usage lists.
 - Added migration `021_add_utm_columns_to_orders.sql` for storing UTM parameters on orders.
 - Added cookie consent banner for GDPR compliance.
 - Added additional security headers (Referrer-Policy, Permissions-Policy, X-Permitted-Cross-Domain-Policies)

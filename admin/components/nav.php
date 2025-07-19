@@ -43,13 +43,7 @@
         <li><a href="/admin/pages/media.php">Media Manager</a></li>
       </ul>
     </li>
-    <li class="nav-item"><a href="/admin/themes/themes.php">Themes</a>
-      <ul class="sub-nav">
-        <li><a href="/admin/themes/assets.php">Assets Manager</a></li>
-        <li><a href="/admin/settings/global_sections.php">Global Sections</a></li>
-        <li><a href="/admin/editor/theme-settings.php">Theme Settings</a></li>
-      </ul>
-    </li>
+    <li class="nav-item"><a href="/admin/themes/themes.php">Themes</a></li>
     <li class="nav-item"><a href="/admin/reports/reports.php">Reports</a>
       <ul class="sub-nav">
         <li><a href="/admin/reports/sales.php">Sales Performance</a></li>

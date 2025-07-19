@@ -59,6 +59,7 @@ foreach (glob($sectionsDir . "/*.schema.json") as $schemaFile) {
       <button id="save-layout-btn">Save Draft</button>
       <button id="publish-layout-btn">Publish</button>
       <a href="/admin/themes/code-editor.php" target="_blank" class="code-link">Edit Code</a>
+      <a href="/admin/editor/theme-settings.php" target="_blank" class="settings-link" title="Theme settings"><i class="bi bi-gear"></i></a>
       <div class="device-toggle">
         <button type="button" data-width="100%" class="active" id="device-desktop">Desktop</button>
         <button type="button" data-width="768px" id="device-tablet">Tablet</button>

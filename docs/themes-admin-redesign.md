@@ -130,26 +130,6 @@ This is the **heart of customization**. It should feel like Shopify or Webflow b
 
 ---
 
-## `themes/assets.php` — Asset Manager
-
-```
-Header: Theme Assets         [ Upload Files ]
-
-| File        | Type   | Size   | Last Updated | Actions |
-|-------------|--------|--------|--------------|---------|
-| logo.svg    | SVG    | 14 KB  | Jul 15       | [Replace] [Delete] |
-| banner.webp | WebP   | 78 KB  | Jul 12       | [Replace] [Delete] |
-```
-
-### Upload Modal
-
-* Drag and drop or browse
-* Preview image before upload
-* Accepts: JPG, PNG, SVG, WebP, JSON, etc.
-* Progress bar + file validation
-
----
-
 ## Extra Enhancements (Global)
 
 | Feature         | UX Value                                       |
@@ -169,5 +149,4 @@ Header: Theme Assets         [ Upload Files ]
 | `themes.php`       | Theme management                   | Clean list view + actions         |
 | `theme-editor.php` | Visual editor (drag/drop + schema) | Real-time preview + mobile toggle |
 | `code-editor.php`  | Developer mode editor              | Monaco interface + file tree      |
-| `assets.php`       | File management                    | Preview, upload, organize         |
 

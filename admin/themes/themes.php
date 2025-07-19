@@ -103,21 +103,23 @@ foreach ($themes as $t) {
 
 <?php if ($activeTheme): ?>
 <?php
-    $slug = preg_replace('/[^a-z0-9]+/i', '-', strtolower($activeTheme['name']));
-    $screenshot = "/themes/$slug/desktop_screenshot.jpg";
-    $mobileShot = "/themes/$slug/mobile_screenshot.jpg";
-    if (!file_exists(__DIR__ . "/../../$screenshot")) {
-        $screenshot = "/themes/default/desktop_screenshot.jpg";
-        $mobileShot = "/themes/default/mobile_screenshot.jpg";
-    }
-    $perfPath = __DIR__ . "/../../themes/$slug/performance.json";
     $score = '';
     $tips = [];
-    if (file_exists($perfPath)) {
-        $data = json_decode(file_get_contents($perfPath), true);
-        $score = $data['score'] ?? '';
-        $tips = $data['tips'] ?? [];
+    $desktopShot = null;
+    $mobileShot = null;
+    $insightsDesktop = fetchPageSpeedInsights(BASE_URL, 'desktop');
+    $insightsMobile = fetchPageSpeedInsights(BASE_URL, 'mobile');
+    if ($insightsDesktop) {
+        $desktopShot = $insightsDesktop['screenshot'] ?? null;
     }
+    if ($insightsMobile) {
+        $score = $insightsMobile['score'] ?? '';
+        $tips = $insightsMobile['tips'] ?? [];
+        $mobileShot = $insightsMobile['screenshot'] ?? null;
+    }
+    $placeholder = '/themes/default/assets/images/placeholder.png';
+    $screenshot = $desktopShot ?: $placeholder;
+    $mobileShot = $mobileShot ?: $screenshot;
 ?>
 <div class="active-theme">
     <h2><?= htmlspecialchars($activeTheme['name']) ?></h2>
