@@ -14,11 +14,16 @@ $schemaFile = THEME_PATH . '/settings-schema.json';
 $schema = is_file($schemaFile) ? json_decode(file_get_contents($schemaFile), true) : [];
 
 $pageTitle = 'Theme Settings';
-require __DIR__ . '/../components/header.php';
+$modal = isset($_GET['modal']);
+if (!$modal) {
+    require __DIR__ . '/../components/header.php';
+    echo '<link rel="stylesheet" href="/admin/assets/admin.css">';
+    echo '<h1>Theme Settings</h1>';
+} else {
+    echo '<link rel="stylesheet" href="/admin/assets/admin.css">';
+}
 ?>
-<link rel="stylesheet" href="/admin/assets/admin.css">
-<h1>Theme Settings</h1>
-<div class="settings-wrapper">
+<?php if(!$modal): ?><div class="settings-wrapper"><?php endif; ?>
   <aside class="settings-menu">
     <ul>
       <?php foreach ($schema as $group => $fields): ?>
@@ -49,7 +54,7 @@ require __DIR__ . '/../components/header.php';
       </section>
     <?php endforeach; ?>
   </div>
-</div>
+<?php if(!$modal): ?></div><?php endif; ?>
 <script>const CURRENT_THEME_ID = <?= (int)$themeId ?>;</script>
 <script src="/admin/assets/theme-settings.js"></script>
-<?php require __DIR__ . '/../components/footer.php'; ?>
+<?php if(!$modal) require __DIR__ . '/../components/footer.php'; ?>

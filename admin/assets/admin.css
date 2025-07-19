@@ -93,7 +93,7 @@ table th { background:var(--hover); }
 .theme-card .menu-items { display:none; position:absolute; right:0; top:100%; background:#fff; border:1px solid var(--border); border-radius:4px; box-shadow:0 2px 6px rgba(0,0,0,0.1); min-width:120px; z-index:10; }
 .theme-card .menu-items form, .theme-card .menu-items a { display:block; padding:6px 10px; white-space:nowrap; text-decoration:none; color:var(--text); background:#fff; border:none; width:100%; text-align:left; }
 .theme-card .menu-items form:hover, .theme-card .menu-items a:hover { background:var(--hover); }
-.theme-card .menu:hover .menu-items { display:block; }
+.theme-card .menu-items.show { display:block; }
 /* Active theme block */
 .active-theme { background:#fff; border:1px solid var(--border); border-radius:6px; box-shadow:0 2px 4px rgba(0,0,0,0.05); padding:12px; margin-bottom:30px; }
 .active-theme h2 { margin-top:0; }

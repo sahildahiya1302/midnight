@@ -48,7 +48,10 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 ':settings' => $theme['settings']
             ]);
             $newId = (int)db()->lastInsertId();
-            $srcDir = __DIR__ . '/../../themes/default';
+            $srcDir = __DIR__ . '/../../themes/theme' . $themeId;
+            if (!is_dir($srcDir)) {
+                $srcDir = __DIR__ . '/../../themes/default';
+            }
             $destDir = __DIR__ . '/../../themes/theme' . $newId;
             copy_dir($srcDir, $destDir);
             $_SESSION['flash_message'] = 'Theme duplicated successfully.';
@@ -111,11 +114,17 @@ foreach ($themes as $t) {
     $insightsMobile = fetchPageSpeedInsights(BASE_URL, 'mobile');
     if ($insightsDesktop) {
         $desktopShot = $insightsDesktop['screenshot'] ?? null;
+        if ($desktopShot && strpos($desktopShot, 'data:image') !== 0) {
+            $desktopShot = 'data:image/jpeg;base64,' . $desktopShot;
+        }
     }
     if ($insightsMobile) {
         $score = $insightsMobile['score'] ?? '';
         $tips = $insightsMobile['tips'] ?? [];
         $mobileShot = $insightsMobile['screenshot'] ?? null;
+        if ($mobileShot && strpos($mobileShot, 'data:image') !== 0) {
+            $mobileShot = 'data:image/jpeg;base64,' . $mobileShot;
+        }
     }
     $placeholder = '/themes/default/assets/images/placeholder.png';
     $screenshot = $desktopShot ?: $placeholder;

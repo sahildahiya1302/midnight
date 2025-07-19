@@ -34,4 +34,23 @@ document.addEventListener('DOMContentLoaded', () => {
       item.classList.toggle('expanded');
     });
   });
+
+  document.querySelectorAll('.theme-card .menu > button').forEach(btn => {
+    btn.addEventListener('click', e => {
+      e.stopPropagation();
+      const menu = btn.closest('.menu').querySelector('.menu-items');
+      if (menu) {
+        document.querySelectorAll('.theme-card .menu-items.show').forEach(m => {
+          if (m !== menu) m.classList.remove('show');
+        });
+        menu.classList.toggle('show');
+      }
+    });
+  });
+
+  document.addEventListener('click', e => {
+    if (!e.target.closest('.menu')) {
+      document.querySelectorAll('.theme-card .menu-items.show').forEach(m => m.classList.remove('show'));
+    }
+  });
 });

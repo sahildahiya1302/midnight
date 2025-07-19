@@ -59,7 +59,7 @@ foreach (glob($sectionsDir . "/*.schema.json") as $schemaFile) {
       <button id="save-layout-btn">Save Draft</button>
       <button id="publish-layout-btn">Publish</button>
       <a href="/admin/themes/code-editor.php" target="_blank" class="code-link">Edit Code</a>
-      <a href="/admin/editor/theme-settings.php" target="_blank" class="settings-link" title="Theme settings"><i class="bi bi-gear"></i></a>
+      <button type="button" id="open-settings" class="settings-link" title="Theme settings"><i class="bi bi-gear"></i></button>
       <div class="device-toggle">
         <button type="button" data-width="100%" class="active" id="device-desktop">Desktop</button>
         <button type="button" data-width="768px" id="device-tablet">Tablet</button>
@@ -82,6 +82,11 @@ foreach (glob($sectionsDir . "/*.schema.json") as $schemaFile) {
           </div>
         <?php endforeach; ?>
       </div>
+    </div>
+  </div>
+  <div id="theme-settings-modal" class="modal">
+    <div class="modal-content" id="theme-settings-content">
+      <button type="button" class="close-modal" aria-label="Close">&times;</button>
     </div>
   </div>
   <div class="admin-layout">
@@ -112,6 +117,9 @@ foreach (glob($sectionsDir . "/*.schema.json") as $schemaFile) {
   const searchInput = document.getElementById('section-filter');
   const previewFrame = document.getElementById('preview-frame');
   const deviceButtons = document.querySelectorAll('.device-toggle button');
+  const settingsBtn = document.getElementById('open-settings');
+  const settingsModal = document.getElementById('theme-settings-modal');
+  const settingsContent = document.getElementById('theme-settings-content');
 
   let addTargetGroup = 'template';
   let addTargetIndex = null;
@@ -1049,6 +1057,22 @@ loadPages().then(() => {
       btn.classList.add('active');
       previewFrame.style.width = btn.dataset.width;
     });
+  });
+
+  settingsBtn.addEventListener('click', () => {
+    fetch('/admin/editor/theme-settings.php?modal=1')
+      .then(r => r.text())
+      .then(html => {
+        settingsContent.insertAdjacentHTML('beforeend', html);
+        const script = document.createElement('script');
+        script.src = '/admin/assets/theme-settings.js';
+        settingsContent.appendChild(script);
+        settingsModal.style.display = 'flex';
+      });
+  });
+  settingsModal.querySelector('.close-modal').addEventListener('click', () => {
+    settingsModal.style.display = 'none';
+    settingsContent.querySelectorAll(':scope > :not(.close-modal)').forEach(el => el.remove());
   });
 
 
