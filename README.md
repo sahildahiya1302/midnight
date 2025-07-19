@@ -29,21 +29,29 @@ Additional UI/UX plans for managing themes and assets are available in
       index.json                - Homepage layout
       product.json              - Product page
       collection.json           - Collection page
-      cart.php                  - Cart page
+      cart.json                 - Cart page
       search.json               - Search results
-      404.php                   - Not found page
+      404.json                  - Not found page
       blog.json                 - Blog index
       article.json              - Blog post
-      gift_card.php             - Gift card view
+      gift_card.json            - Gift card view
+      wishlist.json             - Wishlist page
+      policies.json             - Terms & Policies
+      faq.json                  - FAQ page
+      help-center.json          - Help Center
+      language.json             - Language settings
+      reviews.json              - Reviews
+      settings.json             - Account settings
       page.about-us.json
       page.contact.json
       /customers/
-        login.php
-        register.php
-        account.php
-        orders.php
-        reset_password.php
-        addresses.php
+        login.json
+        register.json
+        account.json
+        profile.json
+        orders.json
+        reset_password.json
+        addresses.json
     /sections/
       announcement-bar.php
       header.php
@@ -212,7 +220,7 @@ This layout mirrors a minimal Shopify-style theme system with a corresponding ad
 - Added wishlist API (`api/wishlist.php`) with theme buttons for users to save favorite products.
 - Implemented persistent sessions for carts and new helpers to track recently viewed products.
 - Added `recently-viewed` section to display the user's browsing history.
-- Introduced product comparison via `api/compare.php` with session-based compare list and a new `compare.php` template.
+- Introduced product comparison via `api/compare.php` with session-based compare list and a new `compare.json` template.
 - Implemented CSRF tokens on authentication forms for increased security.
 - Added dynamic product CSV importer with automatic column mapping and sample feed generator.
 - Created a dedicated admin page for importing products with drag/drop CSV upload and column mapping preview.

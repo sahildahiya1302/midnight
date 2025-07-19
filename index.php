@@ -84,16 +84,6 @@ if ($route === 'index') {
     exit;
 }
 
-// Cart (static PHP)
-if ($route === 'cart') {
-    $template = 'themes/default/templates/cart.php';
-    if (is_file($template)) {
-        $content = render($template);
-        include THEME_PATH . '/layouts/theme.php';
-        exit;
-    }
-    notFound();
-}
 
 // Product (from JSON)
 if (str_starts_with($route, 'product:')) {
