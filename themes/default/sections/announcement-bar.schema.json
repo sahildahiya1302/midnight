@@ -54,5 +54,14 @@
       ]
     }
   ],
-  "max_blocks": 5
+  "max_blocks": 5,
+  "presets": {
+    "default": {
+      "name": "Announcement Bar",
+      "blocks": [
+        {"type": "tile", "settings": {"text": "Free shipping on orders over $50", "link": "#", "background_color": "#000000", "text_color": "#ffffff"}},
+        {"type": "tile", "settings": {"text": "New arrivals dropping weekly", "link": "#", "background_color": "#000000", "text_color": "#ffffff"}}
+      ]
+    }
+  }
 }

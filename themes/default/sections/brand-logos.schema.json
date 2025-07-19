@@ -64,4 +64,16 @@
     }
   ],
   "max_blocks": 10
+  ,
+  "presets": {
+    "default": {
+      "name": "Brand Logos",
+      "blocks": [
+        { "type": "logo", "settings": { "brand_image": "assets/images/logo.png", "brand_link": "#" } },
+        { "type": "logo", "settings": { "brand_image": "assets/images/logo.png", "brand_link": "#" } },
+        { "type": "logo", "settings": { "brand_image": "assets/images/logo.png", "brand_link": "#" } },
+        { "type": "logo", "settings": { "brand_image": "assets/images/logo.png", "brand_link": "#" } }
+      ]
+    }
+  }
 }

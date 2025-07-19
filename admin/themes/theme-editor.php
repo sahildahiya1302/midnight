@@ -899,10 +899,24 @@ let fileSlug = page;
         const presetSettings = schema?.presets?.default?.settings || {};
         const defaultSettings = {};
         (schema.settings || []).forEach(s => { defaultSettings[s.id] = presetSettings[s.id] ?? s.default ?? '' });
-        const blocks = (schema.blocks || []).map(b => {
-          const bs = {}; (b.settings||[]).forEach(s=>{bs[s.id]=s.default??''});
-          return {type:b.type, settings: bs, visible: true};
-        });
+        let blocks;
+        const presetBlocks = schema?.presets?.default?.blocks;
+        if (Array.isArray(presetBlocks) && presetBlocks.length) {
+          blocks = presetBlocks.map(pb => {
+            const bSchema = (schema.blocks || []).find(b => b.type === pb.type) || {};
+            const bs = {};
+            (bSchema.settings || []).forEach(s => {
+              bs[s.id] = pb.settings?.[s.id] ?? s.default ?? '';
+            });
+            return { type: pb.type, settings: bs, visible: true };
+          });
+        } else {
+          blocks = (schema.blocks || []).map(b => {
+            const bs = {};
+            (b.settings || []).forEach(s => { bs[s.id] = s.default ?? ''; });
+            return { type: b.type, settings: bs, visible: true };
+          });
+        }
         let insertIndex = addTargetIndex !== null ? addTargetIndex : currentLayout.length;
         if (insertIndex < 0 || insertIndex > currentLayout.length) insertIndex = currentLayout.length;
         if (addTargetIndex === null) {

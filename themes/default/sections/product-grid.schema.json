@@ -39,4 +39,16 @@
       "default": true
     }
   ]
+  ,
+  "presets": {
+    "default": {
+      "name": "Product Grid",
+      "settings": {
+        "heading": "Featured Products",
+        "max_products": 8,
+        "columns": 4,
+        "show_prices": true
+      }
+    }
+  }
 }

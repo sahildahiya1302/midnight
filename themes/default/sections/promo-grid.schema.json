@@ -55,4 +55,15 @@
     }
   ],
   "max_blocks": 6
+  ,
+  "presets": {
+    "default": {
+      "name": "Promo Grid",
+      "blocks": [
+        {"type": "promo", "settings": {"image": "/assets/promo1.jpg", "title": "Men", "subtitle": "Latest styles", "link": "/collections/men"}},
+        {"type": "promo", "settings": {"image": "/assets/promo2.jpg", "title": "Women", "subtitle": "Trending now", "link": "/collections/women"}},
+        {"type": "promo", "settings": {"image": "/assets/promo3.jpg", "title": "Accessories", "subtitle": "Finish your look", "link": "/collections/accessories"}}
+      ]
+    }
+  }
 }

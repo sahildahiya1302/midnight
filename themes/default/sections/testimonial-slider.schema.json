@@ -67,4 +67,14 @@
     }
   ],
   "max_blocks": 10
+  ,
+  "presets": {
+    "default": {
+      "name": "Testimonial Slider",
+      "blocks": [
+        {"type": "testimonial", "settings": {"photo": "/assets/testimonial1.jpg", "name": "Riya Sharma", "title": "Verified Buyer", "message": "Absolutely love the craftsmanship and sparkle!", "rating": 5}},
+        {"type": "testimonial", "settings": {"photo": "/assets/testimonial2.jpg", "name": "Amit Verma", "title": "Customer", "message": "Quick delivery and premium packaging. Very impressed.", "rating": 4}}
+      ]
+    }
+  }
 }

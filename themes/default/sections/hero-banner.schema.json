@@ -71,4 +71,23 @@
     }
   ],
   "max_blocks": 2
+  ,
+  "presets": {
+    "default": {
+      "name": "Hero Banner",
+      "settings": {
+        "background_image": "assets/images/hero.jpg",
+        "heading": "New Season Essentials",
+        "subheading": "Discover the latest trends in fashion",
+        "button_text": "Shop Now",
+        "button_link": "/collections/all"
+      },
+      "blocks": [
+        {
+          "type": "button",
+          "settings": {"button_text": "Shop Now", "button_link": "/collections/all"}
+        }
+      ]
+    }
+  }
 }
