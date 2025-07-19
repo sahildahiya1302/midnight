@@ -35,21 +35,31 @@
       "settings": {"heading":"How We Work","subheading":"From design to doorstep"},
       "blocks": []
     },
+    "faq_section": {
+      "type": "faq-section",
+      "settings": {"heading": "Your Questions"},
+      "blocks": []
+    },
     "brand_logos": {
       "type": "brand-logos",
       "settings": {"heading":"As Seen In"},
       "blocks": []
+    },
+    "video_banner": {
+      "type": "video-banner",
+      "settings": {"video_url": "uploads/videos/story.mp4"}
     },
     "testimonial_slider": {
       "type": "testimonial-slider",
       "settings": {"heading":"What Customers Say"},
       "blocks": []
     },
+    "trust_badges": {"type": "trust-badges", "settings": {}},
     "newsletter": {
       "type": "newsletter",
       "settings": {"heading": "Stay Updated","placeholder": "Your email"}
     },
     "footer": {"type": "footer", "settings": {}, "blocks": []}
   },
-  "order": ["announcement_bar","header","hero","rich_text","image_with_text","step_guide","brand_logos","testimonial_slider","newsletter","footer"]
+  "order": ["announcement_bar","header","hero","rich_text","image_with_text","step_guide","faq_section","brand_logos","video_banner","testimonial_slider","trust_badges","newsletter","footer"]
 }

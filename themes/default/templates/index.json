@@ -21,6 +21,10 @@
         {"type":"button","settings":{"button_text":"Shop Now","button_link":"/collections/all"}}
       ]
     },
+    "countdown": {
+      "type": "countdown",
+      "settings": {"end_date": "2025-12-31","heading": "Year End Sale"}
+    },
     "brand_logos": {
       "type": "brand-logos",
       "settings": {"heading":"Trusted by Thousands"},
@@ -40,10 +44,18 @@
         {"type":"promo","settings":{"image":"/assets/promo3.jpg","title":"Accessories","subtitle":"Finish your look","link":"/collections/accessories"}}
       ]
     },
+    "before_after": {
+      "type": "before-after-slider",
+      "settings": {"heading": "Transform Your Style"}
+    },
     "testimonial_slider": {
       "type": "testimonial-slider",
       "settings": {"heading":"Customer Love"},
       "blocks": []
+    },
+    "trust_badges": {
+      "type": "trust-badges",
+      "settings": {}
     },
     "newsletter": {
       "type": "newsletter",
@@ -52,5 +64,5 @@
     },
     "footer": {"type": "footer", "settings": {}, "blocks": []}
   },
-  "order": ["announcement_bar","header","hero","brand_logos","featured_collection","promo_grid","testimonial_slider","newsletter","footer"]
+  "order": ["announcement_bar","header","hero","countdown","brand_logos","featured_collection","promo_grid","before_after","testimonial_slider","trust_badges","newsletter","footer"]
 }
